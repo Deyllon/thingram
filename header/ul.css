@@ -1,0 +1,6 @@
+.container__header{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10rem;
+    padding-top: 1rem;
+}

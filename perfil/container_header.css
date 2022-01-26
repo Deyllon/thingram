@@ -1,0 +1,15 @@
+.container_header_bio__perfil{
+    width: 89.6%;
+    border-bottom: 1px solid;
+    margin-left: 5.8rem;
+}
+.container_header__perfil{
+    display: flex;
+    margin-top: 5rem;
+    margin-left: 18%;
+    margin-right: 65%;
+}
+.container_header__perfil--numeros{
+    margin-top: 0rem;
+    margin-left: 27%;
+}

@@ -1,0 +1,7 @@
+.container_usuario__postagem{
+    display: flex;
+    padding-top: 1rem;
+    border-bottom: 1px solid #f5f5f5;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}

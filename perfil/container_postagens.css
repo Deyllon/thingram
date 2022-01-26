@@ -1,0 +1,5 @@
+.container_postagens__perfil{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-left: 3.8rem;
+}

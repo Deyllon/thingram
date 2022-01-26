@@ -1,0 +1,15 @@
+.texto__header{
+    background-color: #d1d0ca;
+    border: none;
+    border-radius: 5px;
+    width: 20rem;
+    height: 1.5rem;
+}
+.texto__header:focus{
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+}
+.botao__header{
+    display: none;
+}

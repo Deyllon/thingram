@@ -1,0 +1,15 @@
+.ul__perfil{
+    display: flex;
+    margin-left: 2rem;
+    margin-top: 3rem;
+}
+.ul__perfil--numeros{
+    margin-top: 1rem;
+    margin-left: 17.9%
+}
+.bio__perfil{
+    display: flex;
+    flex-direction: column;
+    margin-left: 31.3%;
+    margin-top: 0.5rem;
+}

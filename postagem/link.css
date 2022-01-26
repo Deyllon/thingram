@@ -1,0 +1,16 @@
+.link__postagem{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.link__postagem--botao{
+    margin-left: 1rem;
+    
+}
+.link_comentario__postagem{
+    text-decoration: none;
+    color: black;
+}
+.link_comentario__postagem:hover{
+    text-decoration: underline;
+}

@@ -1,0 +1,10 @@
+.imagem__perfil{
+    margin-top: 1rem;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+}
+.imagem_post__perfil{
+    width: 20rem;
+    height: 20rem;
+}
