@@ -1,3 +1,7 @@
 .lista__header{
     margin-left: 5rem;
 }
+.lista_like__header{
+    display: flex;
+    margin-left: 1rem;
+}

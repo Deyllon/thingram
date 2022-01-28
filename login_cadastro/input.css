@@ -1,0 +1,26 @@
+.input__login--texto{
+    width: 20rem;
+    margin-left: 5rem;
+    margin-top: 2rem;
+    border-radius: 10px;
+    background-color: white;
+    border: none;
+    text-align: center;
+}
+.input__login--texto:focus{
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+}
+.input__login--submit{
+    width: 10rem;
+    margin-left: auto;
+    margin-right: 4.5rem;
+    margin-top: 2rem;
+    background-color: white;
+    border: none;
+}
+.input__login--submit:hover{
+    cursor: pointer;
+    font-weight: bold;
+}

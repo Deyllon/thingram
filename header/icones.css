@@ -1,10 +1,21 @@
 .icone__header{
     height: 1.5rem;
     width: 1.5rem;
+    margin-right: 2rem;
+   
+}
+.icone__header:hover{
+    cursor: pointer;
    
 }
 .icone__header--perfil{
     
+    border-radius: 100%;
+    
+}
+.imagem__header{
+    width: 2rem;
+    height: 2rem;
     border-radius: 100%;
     
 }

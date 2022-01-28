@@ -1,0 +1,19 @@
+.container__login{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    text-align: center;
+    margin-top: 6rem;
+    height: 25rem;
+    margin-left: 14%;
+}
+.container_img__login{
+    background-image: url(../pexels-elina-fairytale-3865624.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    
+}
+.container_form__login{
+    
+    border: 1px solid #f5f5f5;
+    width: 30rem;
+}

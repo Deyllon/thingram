@@ -3,3 +3,12 @@
     width: 3rem;
     border-radius: 100%;
 }
+.usuario__postagem--mensagem{
+    height: 2rem;
+    width: 2rem;
+    margin: 1rem;
+}
+.usuario__postagem--lista{
+    height: 2rem;
+    width: 2rem;
+}

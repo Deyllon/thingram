@@ -2,3 +2,10 @@
     font-family: 'Mochiy Pop P One', sans-serif;
     font-weight: bold;
 }
+.logout__header{
+    font-weight: bold;
+}
+.titulo_like__header{
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+}
