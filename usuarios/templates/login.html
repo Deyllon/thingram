@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+        <div class="container__login">
+            <a href="https://www.pexels.com/pt-br/foto/alvorecer-amanhecer-aurora-moda-3865624/" class="container_img__login" aria-label="Imagem de uma pessoa deitada">
+                
+            </a>
+            <div class="container_form__login">
+                <H1 class="Titulo__login">Thingram</H1>
+                <form class="form__login" action="">
+                    <label class="label__login" for=""> Digite aqui o seu email</label>
+                    <input class="input__login--texto" type="email" name="email" id="" placeholder="email">
+                    <label class="label__login" for="">Digite aqui a sua senha</label>
+                    <input class="input__login--texto" type="password" name="senha" id="" placeholder="senha">
+                    <input class="input__login--submit" type="submit" value="Login" >
+                </form>
+                <a class="link__header" href="{% url 'cadastro' %}" target="_blank" rel="noopener noreferrer"><h2 class="texto__login">Criar conta</h2></a>
+            </div>
+        </div>
+{% endblock %}

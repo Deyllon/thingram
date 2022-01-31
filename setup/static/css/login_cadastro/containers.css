@@ -7,9 +7,10 @@
     margin-left: 14%;
 }
 .container_img__login{
-    background-image: url(../pexels-elina-fairytale-3865624.jpg);
+    background-image: url("/static/imagem/pexels-elina-fairytale-3865624.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    
     
 }
 .container_form__login{

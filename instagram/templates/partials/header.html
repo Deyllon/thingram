@@ -1,0 +1,27 @@
+{% load static %}
+<header class="header__header">
+    <ul class="container__header">
+        <a href="#" class="link__header"><li class="titulo__header"><h1>Thingram</h1></li></a>
+        <li class="lista__header"><form action="#">
+                <input class="texto__header" type="text" name="" id="">
+                <input class="botao__header" type="submit"  value="">
+            </form>
+        </li>
+        <div class="div__header">
+            <li><h2><a href=""><img class="icone__header" src="{% static 'imagem/casa.png' %}" alt=""></a></h2></li>
+            <li><h2><a href=""><img class="icone__header" src="{% static 'imagem/balao-de-bate-papo.png' %}" alt=""></a></h2></li>
+            <li onclick="abrirLike()"><h2><img class="icone__header" src="{% static 'imagem/silhueta-de-formato-simples-de-coracao.png' %}" alt="" ></h2></li>
+            <li onclick="abrirLogout()"><h2><img class=" icone__header icone__header--perfil" src="{% static 'imagem/usuario-de-perfil.png' %}" alt=""></h2></li>
+        </div>
+    </ul> 
+    <div id="container_logout__header" class="container_log__header">
+        <h2 class="logout__header"><a href="{% url 'logout' %}" class="link__header">Logout</a></h2>
+    </div> 
+    <div id="container_like__header" class="container_likes__header">
+        <ul>
+            <a href="" class="link_like__header"> <li class="lista_like__header"><img class="imagem__header" src="usuario-de-perfil.png" alt=""> <h2 class="titulo_like__header">Titulo do perfil</h2></li></a>
+            <a href="" class="link_like__header"> <li class="lista_like__header"><img class="imagem__header" src="usuario-de-perfil.png" alt=""> <h2 class="titulo_like__header">Titulo do perfil</h2></li></a>
+            <a href="" class="link_like__header"> <li class="lista_like__header"><img class="imagem__header" src="usuario-de-perfil.png" alt=""> <h2 class="titulo_like__header">Titulo do perfil</h2></li></a>
+        </ul>
+    </div>     
+</header>
