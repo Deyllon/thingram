@@ -5,7 +5,9 @@
 }
 .link__postagem--botao{
     margin-left: 1rem;
-    
+    display: flex;
+    text-decoration: none;
+    color: black;
 }
 .link_comentario__postagem{
     text-decoration: none;

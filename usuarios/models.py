@@ -7,7 +7,12 @@ from django.dispatch import receiver
 class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nome = models.CharField(max_length=1000)
-    foto = models.ImageField(upload_to='perfil/%d/%m/%Y', default='usuario-de-perfil.png' ,blank=True, null=True)
+    foto = models.ImageField(upload_to='fotos/perfil/%d/%m/%Y', default='usuario-de-perfil.png' ,blank=True, null=True)
+    bio = models.TextField(max_length=500, default='')
+    seguidores = models.ManyToManyField(User, related_name='seguidores')
+    
+    def quantidade_de_seguidores(self):
+        return self.seguidores.count()
     
 @receiver(post_save, sender=User)
 def criar_perfil(sender, instance, created, **kwargs):

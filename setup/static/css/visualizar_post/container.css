@@ -1,0 +1,30 @@
+
+.container__post_grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 10rem;
+}
+.container__post_imagem{
+    margin-left: 20rem;
+    border: 1px solid #f5f5f5;
+    height: 30rem;
+}
+.container__post_comentario{
+    margin-right: 20rem;
+    border: 1px solid #f5f5f5;
+    height: 30rem;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.container_perfil__post{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #f5f5f5;
+    padding-top: 0.5rem;
+}
+.div_perfil__post{
+    display: flex;
+    
+}

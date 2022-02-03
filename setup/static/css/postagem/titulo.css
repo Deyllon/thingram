@@ -1,4 +1,11 @@
 .titulo__postagem{
     padding-top: 1rem;
-    padding-left: 1rem;
+    padding-left: 2rem;
+}
+.titulo__postagem--descricao{
+    font-weight: bold;
+}
+.contador_botao__postagem{
+    padding-top: 0.1rem;
+    margin-right: 0.5rem;
 }

@@ -1,0 +1,9 @@
+.titulo_perfil__post{
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    
+}
+.titulo_perfil__post--comentario{
+    word-wrap: break-word;
+    width: 30rem;
+}

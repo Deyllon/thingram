@@ -10,7 +10,7 @@
                         {% if mensagens %}
                             <ul>
                                 {% for mensagem in mensagens %}
-                                    <a class="link__mensagem" href="{% url 'inbox' mensagem.emissario.pk %}">
+                                    <a class="link__mensagem" href="">
                                         <li class="lista__mensagem">
                                             <img class="usuario__postagem usuario__postagem--lista" src="{{ mensagem.emissario.foto.url }}" alt="">
                                             <h4 class="nome_user__mensagem">{{ mensagem.emissario.nome }}</h4>
@@ -20,7 +20,11 @@
                             </ul>
                         {% endif %}
                     </div>
-                    <div class="container_mensage__mensagem">  
+                    <div class="container_mensage__mensagem">
+                        <div class="div_mensage_mensagem">
+                            <img class="usuario__postagem usuario__postagem--mensagem" src="{{ perfil.foto.url }}" alt="">
+                            <h5 class="nome_user__mensagem nome_user__mensagem--mensage">{{ perfil.nome }}</h5>
+                        </div>
                     </div>
                 </div>
             </main>

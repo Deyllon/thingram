@@ -1,0 +1,6 @@
+.lista__post{
+    display: flex;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    word-wrap: break-word;
+}

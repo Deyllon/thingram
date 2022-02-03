@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div>
+    {% include 'partials/header.html' %}
+    <main class="main">
+        <div class="container__post_grid">
+            <div class="container__post_imagem">
+                <img class="imagem__post" src="{{ postagem.foto.url }}" alt="">
+            </div>
+            <div class="container__post_comentario">
+                <div class="container_perfil__post">
+                    <div class="div_perfil__post">
+                        <img class="imagem_perfil__post" src="{{ postagem.usuario.foto.url }}" alt="">
+                        <h3 class="titulo_perfil__post">{{ postagem.usuario.nome }}</h3>
+                        <h5 class="titulo_perfil__post">Seguindo</h5>
+                    </div>
+                    <img onclick="voltar()" id="x" class="icone_perfil__post" src="{% static 'imagem/x.png' %}" alt="">
+                </div>
+                {% if comentarios %}
+                    <ul>
+                        {% for comentario in comentarios %}
+                            <li class="lista__post"> 
+                                <img class="imagem_perfil__post" src="{{ comentario.usuario.foto.url }}" alt="">
+                                <h3 class="titulo_perfil__post">{{ comentario.usuario.nome }}</h3>
+                                <h4 class=" titulo_perfil__post titulo_perfil__post--comentario">{{ comentario.comentario }}</h4>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+        <script>
+            function voltar(){
+                window.history.back()
+            }
+
+        </script>
+    </main>
+</div>
+{% endblock %}

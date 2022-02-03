@@ -1,33 +1,54 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.models import User
 from django.contrib import auth
+from usuarios.validator import valida_nome
+from .validator import nome_unico, valida_email, valida_nome, valida_senha
+from .models import Perfil
 
 
 
 def cadastro(request):
     if request.method == 'POST':
         email = request.POST['email']
+        if not valida_email(email):
+            return redirect('cadastro')
         nome = request.POST['nome']
+        if not valida_nome(nome):
+            return redirect('cadastro') 
+        if nome_unico(nome):
+            return redirect('cadastro')         
         senha = request.POST['senha']
         senha2 = request.POST['senha2']
-        usuario = User.objects.creat(username=nome, email=email, password=senha)
+        if not valida_senha(senha, senha2):
+            return redirect('cadastro')
+        foto = request.FILES['foto']
+        usuario = User.objects.create_user(username=nome, email=email, password=senha)
         usuario.save()
         usuario.perfil.nome = nome
+        usuario.perfil.foto = foto
         usuario.save()
-        usuario_login = auth.authenticate(request, username=nome, password=senha)
-        auth.login(request, usuario_login)
-        return redirect('index')
+        return redirect('login')
     return render(request,'cadastro.html')
 
 def login(request):
     if request.method == 'POST':
         email = request.POST['email']
         senha = request.POST['senha'] 
-        usuario_login = auth.authenticate(request, username=email, password=senha)
-        auth.login(request, usuario_login)
-        return redirect('index')
+        nome = User.objects.filter(email=email).values_list('username', flat=True).get()
+        usuario_login = auth.authenticate(request, username=nome, password=senha)
+        if usuario_login is not None:
+            auth.login(request, usuario_login)
+            return redirect('index')
     return render (request,'login.html')
 
 def logout(request):
     auth.logout(request)
+    return redirect('index')
+
+def seguidores(request, pk):
+    perfil = get_object_or_404(Perfil, id=pk)
+    if request.user in perfil.seguidores.all():
+        perfil.seguidores.remove(request.user)
+    else:
+        perfil.seguidores.add(request.user)
     return redirect('index')
