@@ -9,6 +9,7 @@
             </form>
         </li>
         <div class="div__header">
+            <li><h2><a href="{% url 'postar' user.perfil.pk %} "><img class="icone__header" src="{% static 'imagem/postagem-no-instagram.png' %}" alt=""></a></h2></li>
             <li><h2><a href="{% url 'index' %}"><img class="icone__header" src="{% static 'imagem/casa.png' %}" alt=""></a></h2></li>
             <li><h2><a href="{% url 'mensagem' %}"><img class="icone__header" src="{% static 'imagem/balao-de-bate-papo.png' %}" alt=""></a></h2></li>
             <li onclick="abrirLike()"><h2><img class="icone__header" src="{% static 'imagem/silhueta-de-formato-simples-de-coracao.png' %}" alt="" ></h2></li>
@@ -17,6 +18,7 @@
     </ul> 
     <div id="container_logout__header" class="container_log__header">
         <h2 class="logout__header"><a href="{% url 'perfil' user.perfil.pk %}" class="link__header">Perfil</a></h2>
+        <h2 class="logout__header"><a href="{% url 'edita_perfil' user.perfil.pk %}" class="link__header">Editar perfil</a></h2>
         <h2 class="logout__header"><a href="{% url 'logout' %}" class="link__header">Logout</a></h2>
     </div> 
     <div id="container_like__header" class="container_likes__header">

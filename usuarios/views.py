@@ -52,3 +52,20 @@ def seguidores(request, pk):
     else:
         perfil.seguidores.add(request.user)
     return redirect('index')
+
+def edita_perfil(request,pk):
+    perfil = get_object_or_404(Perfil, pk=pk)
+    if request.method == 'POST':
+        nome_perfil = request.POST['nome_perfil']
+        bio = request.POST['bio']
+        foto_perfil = request.FILES['foto_perfil']
+        perfil.nome= nome_perfil
+        perfil.foto = foto_perfil
+        perfil.bio = bio
+        perfil.save()
+        return redirect('index')
+    contexto = {
+        'perfil': perfil
+    }
+    return render(request, 'editar_perfil.html', contexto)
+        

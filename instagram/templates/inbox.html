@@ -25,6 +25,19 @@
                             <img class="usuario__postagem usuario__postagem--mensagem" src="{{ perfil.foto.url }}" alt="">
                             <h5 class="nome_user__mensagem nome_user__mensagem--mensage">{{ perfil.nome }}</h5>
                         </div>
+                        {% if mensagem_inbox %}
+                            {% for mensagem in mensagem_inbox %}
+                                <div class="container_inbox__mensagem">
+                                    <div class="div_inbox__mensagem">
+                                        <h6 class="dados_inbox__mensagem">{{ mensagem.emissario.nome }}</h6>
+                                        <h6 class="dados_inbox__mensagem">{{ mensagem.data }}</h6>
+                                    </div>
+                                    <h6 class="conteudo_inbox__mensagem">{{ mensagem.conteudo }}</h6>
+                                </div>
+                      
+                                
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
             </main>

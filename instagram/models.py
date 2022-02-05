@@ -9,6 +9,7 @@ class Postagem(models.Model):
     foto = models.ImageField(upload_to='fotos/%d/%m/%Y', blank=False)
     descricao = models.TextField(max_length=500, default="")
     like = models.ManyToManyField(User, blank=True)
+    data = models.DateTimeField(default=datetime.now(), blank=True)
     
     def quantidade_de_like(self):
         return self.like.count()

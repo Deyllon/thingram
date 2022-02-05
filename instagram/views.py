@@ -1,11 +1,15 @@
-from multiprocessing import context
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from usuarios.views import seguidores
 from .models import Postagem, Comentario, Mensagem
 from usuarios.models import Perfil
+
+
+
 def index(request):
     if request.user.is_authenticated:
-        postagens = Postagem.objects.all()
-        perfil = Perfil.objects.exclude(user=request.user)[:3]
+        postagens = Postagem.objects.order_by('data')
+        perfil = Perfil.objects.exclude(user=request.user) & Perfil.objects.exclude(seguidores=request.user)[:3]
         contexto = {
             'postagens': postagens,
             'perfils': perfil,
@@ -27,13 +31,22 @@ def perfil(request, pk):
     }
     return render(request, 'perfil.html', contexto)
 
-def like(request, pk):
-    posts = get_object_or_404(Postagem, id=pk)
-    if request.user in posts.like.all():
-        posts.like.remove(request.user)
-    else:
-        posts.like.add(request.user.id)
-    return redirect('index')
+def like(request):
+    if request.POST.get('action') == 'post':
+        id = int(request.POST.get('postid'))
+        posts = get_object_or_404(Postagem, id=id)
+        if request.user in posts.like.all():
+            posts.like.remove(request.user)
+            posts.save()
+            result = posts.quantidade_de_like()
+            resposta = 'remover'
+        else:
+            posts.like.add(request.user.id)
+            posts.save()
+            result = posts.quantidade_de_like()
+            resposta = 'adicionar'
+        
+        return JsonResponse({'result': result, 'resposta': resposta })
 
 def comentar(request, pk):
     postagem = get_object_or_404(Postagem, pk=pk)
@@ -75,10 +88,24 @@ def mensagem(request):
 
 def inbox(request, pk):
     perfil = get_object_or_404(Perfil, pk=pk)
-    mensagem = Mensagem.objects.filter(emissario=perfil, destinatario=request.user.perfil)| Mensagem.objects.filter(emissario=request.user.perfil, destinatario=perfil) 
+    mensagem_inbox = Mensagem.objects.filter(emissario=perfil, destinatario=request.user.perfil)| Mensagem.objects.filter(emissario=request.user.perfil, destinatario=perfil) 
+    mensagem = Mensagem.objects.exclude(emissario=request.user.perfil).distinct('emissario_id').order_by('emissario_id', '-data')
     contexto = {
-        'mensagem': mensagem,
+        'mensagem_inbox': mensagem_inbox,
+        'perfil': perfil,
+        'mensagens': mensagem
+    }
+    return render(request, 'inbox.html', contexto)
+
+def postar(request, pk):
+    perfil =get_object_or_404(Perfil, pk=pk)
+    if request.method == 'POST':
+        foto = request.FILES['foto']
+        descricao = request.POST['descricao']
+        postagem = Postagem.objects.create(usuario= perfil, foto= foto, descricao=descricao )
+        postagem.save()
+        return redirect('index')
+    contexto = {
         'perfil': perfil
     }
-    print(mensagem)
-    return render(request, 'inbox.html', contexto)
+    return render(request, 'publicar.html', contexto)

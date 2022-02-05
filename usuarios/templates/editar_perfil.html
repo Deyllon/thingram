@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div>
+            {% include 'partials/header.html' %}
+        <main class="main"> 
+            <form class="form__edita" action="{% url 'edita_perfil' perfil.user.pk %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                <img class="imagem_perfil__edita label__edita " src="{{ perfil.foto.url }}" alt="">
+                <h3 class="input__edita input__edita--titulo">{{ perfil.nome }}</h3>            
+                <label class="label__edita" for="nome">Nome</label>
+                <input class="input__edita" type="text" name="nome_perfil" id="nome">
+                <label class="label__edita" for="biografia">Bio</label>
+                <input class="input__edita" type="text" name="bio" id="biografia">
+                <label class="label__edita label__edita--foto" for="foto">Adicionar foto</label>        
+                <input class="input__edita" type="file" accept="image/png, image/jpeg" name="foto_perfil" id="foto" hidden>   
+                <img class="imagem__edita" src="{{ perfil.foto.url }}" alt="">
+                <input class="input__publicar input__publicar--button" type="submit" value="Editar">           
+            </form>
+   
+        </main>
+    </div>
+   
+{% endblock %}

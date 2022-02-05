@@ -5,26 +5,31 @@
         <div>
             {% include 'partials/header.html' %}
             <main class="main"> 
-                {% if perfils %} 
+              
                     <div class="container__sugestoes">
                         <h3><a href="{% url 'perfil' user.pk %}"><img class="usuario__sugestoes usuario__sugestoes--user" src="{{ user.perfil.foto.url }}" alt=""></a></h3>
-                        <h4 class="titulo__sugestoes">Perfis sugeridos</h4>
-                        <ul>
-                            {% for perfis in perfils %}     
-                        
-                                <li class="lista__sugestoes"><a href="{% url 'perfil' perfis.user.pk %}"><img class="usuario__sugestoes" src="{{ perfis.foto.url}}" alt=""></a>
-                                    <a href="{% url 'perfil' perfis.user.pk %}" class="link__sugestoes"><p>{{perfis.nome}}</p></a>
-                                    <a href="" class="link__sugestoes link__sugestoes--seguir">Seguir</a>
-                                </li>
-                            {% endfor %}
-                        </ul>
+                        {% if perfils %} 
+                            <h4 class="titulo__sugestoes">Perfis sugeridos</h4>
+                            <ul>
+                                {% for perfis in perfils %}     
+                            
+                                    <li class="lista__sugestoes"><a href="{% url 'perfil' perfis.user.pk %}"><img class="usuario__sugestoes" src="{{ perfis.foto.url}}" alt=""></a>
+                                        <a href="{% url 'perfil' perfis.user.pk %}" class="link__sugestoes"><p>{{perfis.nome}}</p></a>
+                                        {% if user in perfis.seguidores.all %}
+                                            <a href="{% url 'seguidores' perfis.user.pk %}" class="link__sugestoes link__sugestoes--seguir">Não seguir</a>
+                                        {% else %}
+                                            <a href="{% url 'seguidores' perfis.user.pk %}" class="link__sugestoes link__sugestoes--seguir">Seguir</a>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}    
                     </div>
-                {% endif %}
+                
                 {% if postagens %}
                     {% for post in postagens %}
                    
                         <div class="container__postagem">
-                            
                             <div class="container_usuario__postagem">
                                 <a href="{% url 'perfil' post.usuario.pk %}"><img src="{{ post.usuario.foto.url }}" class="usuario__postagem" alt=""></a>
                                 <a href="{% url 'perfil' post.usuario.pk %}" class="link__postagem"><h5 class="titulo__postagem">{{ post.usuario.nome }}</h5></a>
@@ -32,9 +37,9 @@
                             <a href="{% url 'visualizar_post' post.pk %}"><img class="imagem__postagem" src="{{post.foto.url}}" alt=""></a>
                             <ul class="ul__postagem">
                                 {% if user in post.like.all %}
-                                <li> <a href="{% url 'like' post.id %}" class="link__postagem--botao"> <h5 class="contador_botao__postagem">{{ post.quantidade_de_like }}</h5>  <img class="botao__postagem" src="{% static 'imagem/silhueta-de-formato-simples-de-coracao.png' %}" alt=""></a> </li>
+                                <li> <a  href="#" id="{{post.id}}" class="link__postagem--botao"> {{post.quantidade_de_like}} <img id="" class="botao__postagem" src="{% static 'imagem/silhueta-de-formato-simples-de-coracao.png' %}" alt=""></a> </li>
                                 {% else %}
-                                <li> <a href="{% url 'like' post.id %}" class="link__postagem--botao"> <h5 class="contador_botao__postagem">{{ post.quantidade_de_like }}</h5>   <img class="botao__postagem" src="{% static 'imagem/coracao-branco.png' %}" alt=""></a> </li>
+                                <li> <a href="#" id="{{post.id}}" class="link__postagem--botao"> {{post.quantidade_de_like}} <img id="like" class="botao__postagem" src="{% static 'imagem/coracao-branco.png' %}" alt=""></a> </li>
                                 {% endif %}
                                 <li> <a href="" class="link__postagem--botao"> <img class="botao__postagem" src="{% static 'imagem/balao-de-bate-papo.png' %}" alt=""></a></li>
                             
@@ -47,10 +52,41 @@
                                 <input class="input_botao__postagem" type="submit" value="Postar">
                             </form>
                         </div>
-                  
+
                     {% endfor %}
                 {% endif %}
             </main>
         </div>
-       
+        <script>
+            $('.link__postagem--botao').click(function(e){
+                e.preventDefault();
+                const post_id = $(this).attr('id'); 
+                const like = $(this);
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'like' %}",
+                    data: {
+                        postid: post_id,
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                        action: 'post'
+                    },
+                    success: function (json) {
+                        const resposta = json['resposta']
+                        if (resposta == 'remover'){
+                            like.text(json['result'])
+                            like.append('<img  class="botao__postagem" src="{% static "imagem/coracao-branco.png" %}" >')
+                        } else{
+                            like.text(json ['result'])
+                            like.append('<img id="like" class="botao__postagem" src="{% static "imagem/silhueta-de-formato-simples-de-coracao.png" %}" >')
+                        }    
+                        
+                                      
+                    },
+                    error: function (xhr, errmsg, err) {
+
+                    }
+                })
+                
+            })
+        </script>
 {% endblock %}

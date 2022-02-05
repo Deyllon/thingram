@@ -1,0 +1,15 @@
+.imagem_perfil__edita{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+}
+.imagem__edita{
+    height: 10rem;
+    width: 10rem;
+    border-radius: 100%;
+    margin-top: 2rem;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin-right: auto;
+    margin-left: auto;
+}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div>
+            {% include 'partials/header.html' %}
+        <main class="main"> 
+            <form class="container__publicar" action="{% url 'postar' user.perfil.pk %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                <img class="imagem__publicar" src="{{ perfil.foto.url }}" alt="">
+                <h5 class="titulo__publicar" >{{ perfil.nome }}</h5>
+                <label class='label__publicar' for="foto">Adicionar foto</label>
+                <input type="file" name="foto" id="foto" hidden>
+                <img class="imagem_postada__publicar" src="" alt="" hidden>
+                <label class='label__publicar' for="descriçao">Adicionar descrição</label>
+                <input class="input__publicar" type="text" name="descricao" id="descriçao">
+                <input class="input__publicar input__publicar--button" type="submit" value="Postar">
+            </form>
+        </main>
+    </div>
+   
+{% endblock %}

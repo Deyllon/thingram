@@ -13,14 +13,20 @@
     overflow-x: hidden;
 }
 
-.container_mensage__mensagem{
-    
+.container_mensage__mensagem{  
     border-left: 1px solid #f5f5f5;
-    
-    
+    overflow-y: scroll;
 }
 .div_mensage_mensagem{
     display: flex;
     
     border-bottom: 1px solid #f5f5f5;
+}
+.container_inbox__mensagem{
+    background-color: #f5f5f5;
+    margin: 1rem 0rem;
+}
+.div_inbox__mensagem{
+    display: flex;
+    border-bottom: 1px solid;
 }

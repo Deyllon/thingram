@@ -10,7 +10,7 @@
                                     <img class="imagem__perfil" src="{{ usuario.perfil.foto.url }}" alt="">
                                     <ul class="ul__perfil">
                                         <li class="item_lista__perfil"> <h3 class="titulo__perfil">{{ usuario.perfil.nome }}</h3> </li>
-                                        <li class="item_lista__perfil"> <input class="input_botao__perfil" type="button" value="Enviar mensagem"> </li>
+                                        <li class="item_lista__perfil"> <a href="{% url 'inbox' usuario.pk %}"><input class="input_botao__perfil" type="button" value="Enviar mensagem"> </a> </li>
                                         {% if user in usuario.perfil.seguidores.all %}
                                             <li class="item_lista__perfil"> <a href="{% url 'seguidores' usuario.pk %}"> <input class="input_botao__perfil" type="button" value="Não seguir"> </a></li>
                                         {% else %}
@@ -27,10 +27,7 @@
                                 </div>   
                                 <ul class="bio__perfil">
                                     <li class="lista_bio__perfil"> <p class="nome_bio__perfil"> {{usuario.perfil.nome}}</p>  </li>
-                                    <li class="lista_bio__perfil"><h5 class="biografia__perfil">Biografia kjfkjfdjkdjkjkfjkfdkjfdjkfdjkfjkdjk
-                                            dfnkgkjgfjkgfkjfgjkfgkjfgjkgkjklhklhhklkhllkhlkhhkl
-                                            gdhyjjgkgjkkjgfjgkkjggjkgjkkgjkgjkgjkgjkgjgkjkgjk
-                                        </h5> 
+                                    <li class="lista_bio__perfil"><h5 class="biografia__perfil">{{ usuario.perfil.bio }}</h5> 
                                     </li>
                                 </ul>
                             </div>
