@@ -14,7 +14,7 @@
                                 {% for perfis in perfils %}     
                             
                                     <li class="lista__sugestoes"><a href="{% url 'perfil' perfis.user.pk %}"><img class="usuario__sugestoes" src="{{ perfis.foto.url}}" alt=""></a>
-                                        <a href="{% url 'perfil' perfis.user.pk %}" class="link__sugestoes"><p>{{perfis.nome}}</p></a>
+                                        <a href="{% url 'perfil' perfis.pk %}" class="link__sugestoes"><p>{{perfis.nome}}</p></a>
                                         {% if user in perfis.seguidores.all %}
                                             <a href="{% url 'seguidores' perfis.user.pk %}" class="link__sugestoes link__sugestoes--seguir">Não seguir</a>
                                         {% else %}
@@ -47,8 +47,9 @@
                             <div class="container_descricao__postagem">
                                 <h6 class="titulo__postagem--descricao">{{post.descricao}}</h6>
                             </div>
-                            <form class="container_comentario__postagem" action="{% url 'comentar' post.pk %}" method="post">{% csrf_token %}
-                                <input class="input_texto__postagem" type="text" name="comentar" id="" placeholder="adicione um comentario">
+                            <form id="{{ post.id }}" class="container_comentario__postagem" action="{% url 'comentar' %}" method="post">{% csrf_token %}
+                                <input  type="text" name="" hidden id="username" value="{{request.user.perfil.id}}">
+                                <input class="input_texto__postagem" type="text" name="comentar" id="{{ post.id }}" placeholder="adicione um comentario">
                                 <input class="input_botao__postagem" type="submit" value="Postar">
                             </form>
                         </div>
@@ -88,5 +89,29 @@
                 })
                 
             })
+        </script>
+        <script>
+            $('.container_comentario__postagem').submit(function(e){
+                e.preventDefault()
+                const post_id = $(this).attr('id')
+                const texto = $(this).find(".input_texto__postagem").val()
+                const user =  $(this).find("#username").val()
+                const url = $(this).attr('action')
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data:{
+                        postid: post_id,
+                        comentario: texto,
+                        usuario: user,
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                        
+                    },
+                    success: function(data){
+                        alert(data)
+                    }
+                });
+                texto.value = ''      
+            });
         </script>
 {% endblock %}

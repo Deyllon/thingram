@@ -25,21 +25,59 @@
                             <img class="usuario__postagem usuario__postagem--mensagem" src="{{ perfil.foto.url }}" alt="">
                             <h5 class="nome_user__mensagem nome_user__mensagem--mensage">{{ perfil.nome }}</h5>
                         </div>
-                        {% if mensagem_inbox %}
-                            {% for mensagem in mensagem_inbox %}
-                                <div class="container_inbox__mensagem">
-                                    <div class="div_inbox__mensagem">
-                                        <h6 class="dados_inbox__mensagem">{{ mensagem.emissario.nome }}</h6>
-                                        <h6 class="dados_inbox__mensagem">{{ mensagem.data }}</h6>
-                                    </div>
-                                    <h6 class="conteudo_inbox__mensagem">{{ mensagem.conteudo }}</h6>
-                                </div>
-                      
-                                
-                            {% endfor %}
-                        {% endif %}
+                        <div id="macarraocaralho">
+
+                        </div>
+                        <form id="formulario_mensagem" class="formulario_inbox__mensagem" action="{% url 'enviar_mensagem' %}" method="post">{% csrf_token %}
+                            <input id="destinatario" type="text" hidden name="" value="{{perfil.pk}}">
+                            <input id="emissario" type="text" hidden name="" value="{{request.user.perfil.pk}}">
+                            <input id="mensagem" class="input_text_inbox__mensagem" type="text" name="" id="">
+                            <input id="enivar_mensagem" class="input_submit_inbox__mensagem" type="submit" value="">
+                        </form>
                     </div>
                 </div>
             </main>
         </div>
+        <script>
+            $('#formulario_mensagem').submit(function(e){
+                e.preventDefault();
+                const destinatarioo = $(this).find('#destinatario').val();
+                const emissarioo = $(this).find('#emissario').val();
+                const mensagem = $('#mensagem').val();
+                const url = $(this).attr('action');
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data:{
+                        ide:emissarioo,
+                        idd:destinatarioo,
+                        mensagem_conteudo:mensagem,
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    success: function(data){
+                        alert(data)
+                    }
+                });
+                mensagem.value = ''
+            })
+        </script>
+        <script>
+            setInterval(function(){
+                
+                $.ajax({
+                    type:'GET',
+                    url:'/ler_mensagem/{{perfil.pk}}',
+                    success:function(resposta){
+                        $("#macarraocaralho").empty();
+                        for (let mensagem in resposta.messages){ 
+                            let conteudo = "<div><p>"+resposta.messages[mensagem].emissario_nome+"</p><p>"+resposta.messages[mensagem].data+"</p><p>"+resposta.messages[mensagem].conteudo+"</p></div>"; 
+                            $("#macarraocaralho").append(conteudo) 
+                            }         
+                    },
+                    error: function(resposta){
+                    alert('An error occured')
+                    }
+                });
+            },0);
+        </script>
 {% endblock %}

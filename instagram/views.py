@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from usuarios.views import seguidores
 from .models import Postagem, Comentario, Mensagem
@@ -48,13 +48,16 @@ def like(request):
         
         return JsonResponse({'result': result, 'resposta': resposta })
 
-def comentar(request, pk):
-    postagem = get_object_or_404(Postagem, pk=pk)
-    usuario = get_object_or_404(Perfil, pk= request.user.perfil.pk)
-    comentar = request.POST['comentar']
+def comentar(request):
+    id = int(request.POST.get('postid'))
+    user_id = int(request.POST.get('usuario'))
+    comentario_feito = request.POST.get('comentario')
+    postagem = get_object_or_404(Postagem, id=id)
+    usuario = get_object_or_404(Perfil, id= user_id)
+    comentar = comentario_feito
     comentario = Comentario.objects.create(postagem=postagem, comentario=comentar, usuario=usuario)
     comentario.save()
-    return redirect('index')
+    return HttpResponse('Comentario feito com sucesso')
 
 def visualizar_post(request, pk):
     postagem = get_object_or_404(Postagem, pk=pk)
@@ -88,14 +91,24 @@ def mensagem(request):
 
 def inbox(request, pk):
     perfil = get_object_or_404(Perfil, pk=pk)
-    mensagem_inbox = Mensagem.objects.filter(emissario=perfil, destinatario=request.user.perfil)| Mensagem.objects.filter(emissario=request.user.perfil, destinatario=perfil) 
+   
     mensagem = Mensagem.objects.exclude(emissario=request.user.perfil).distinct('emissario_id').order_by('emissario_id', '-data')
     contexto = {
-        'mensagem_inbox': mensagem_inbox,
+        
         'perfil': perfil,
         'mensagens': mensagem
     }
     return render(request, 'inbox.html', contexto)
+
+def enviar_mensagem(request):
+    id_emissario = int(request.POST.get('ide'))
+    id_destinatario = int(request.POST.get('idd'))
+    emissario = get_object_or_404(Perfil, id=id_emissario)
+    destinatario = get_object_or_404(Perfil, id=id_destinatario)
+    conteudo = request.POST.get('mensagem_conteudo')
+    mensagem = Mensagem.objects.create(conteudo=conteudo, emissario=emissario,destinatario=destinatario, emissario_nome=emissario.nome)
+    mensagem.save()
+    return HttpResponse('Mensagem feita com sucesso')
 
 def postar(request, pk):
     perfil =get_object_or_404(Perfil, pk=pk)
@@ -109,3 +122,8 @@ def postar(request, pk):
         'perfil': perfil
     }
     return render(request, 'publicar.html', contexto)
+
+def ler_mensagem(request,pk):
+    perfil = get_object_or_404(Perfil, pk=pk)
+    mensagem = Mensagem.objects.filter(emissario=perfil, destinatario=request.user.perfil)| Mensagem.objects.filter(emissario=request.user.perfil, destinatario=perfil) 
+    return JsonResponse({"messages":list(mensagem.values())})

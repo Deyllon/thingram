@@ -22,3 +22,4 @@ class Mensagem(models.Model):
     data = models.DateTimeField(default=datetime.now, blank=True)
     emissario = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='emisario')
     destinatario = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='destinatario')
+    emissario_nome = models.CharField(max_length=500, default="")
