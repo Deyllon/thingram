@@ -10,11 +10,13 @@
                                     <img class="imagem__perfil" src="{{ usuario.perfil.foto.url }}" alt="">
                                     <ul class="ul__perfil">
                                         <li class="item_lista__perfil"> <h3 class="titulo__perfil">{{ usuario.perfil.nome }}</h3> </li>
-                                        <li class="item_lista__perfil"> <a href="{% url 'inbox' usuario.perfil.pk %}"><input class="input_botao__perfil" type="button" value="Enviar mensagem"> </a> </li>
-                                        {% if user in usuario.perfil.seguidores.all %}
-                                            <li class="item_lista__perfil"> <a href="{% url 'seguidores' usuario.pk %}"> <input class="input_botao__perfil" type="button" value="Não seguir"> </a></li>
-                                        {% else %}
-                                        <li class="item_lista__perfil"> <a href="{% url 'seguidores' usuario.pk %}"><input class="input_botao__perfil" type="button" value="seguir"> </a></li>
+                                        {% if not usuario == request.user %}
+                                            <li class="item_lista__perfil"> <a href="{% url 'inbox' usuario.perfil.pk %}"><input class="input_botao__perfil" type="button" value="Enviar mensagem"> </a> </li>
+                                            {% if user in usuario.perfil.seguidores.all %}
+                                                <li class="item_lista__perfil"> <a href="{% url 'seguidores' usuario.pk %}"> <input class="input_botao__perfil" type="button" value="Não seguir"> </a></li>
+                                            {% else %}
+                                            <li class="item_lista__perfil"> <a href="{% url 'seguidores' usuario.pk %}"><input class="input_botao__perfil" type="button" value="seguir"> </a></li>
+                                            {% endif %}
                                         {% endif %}
                                     </ul>
                                 </div>

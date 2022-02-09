@@ -22,10 +22,10 @@
     margin-top: 1rem;
     width: 8rem;
     margin-left: auto;
-    margin-right: 2.5rem;
+    margin-right: 8.8rem;
     border: 1px solid #f5f5f5 ;
     text-align: center;
-    height: 3rem;
+    height: 5rem;
     padding-top: 0.5rem;
     background-color:whitesmoke ;
 }
@@ -44,11 +44,12 @@
 .container_likes__header--ativo{
     margin-top: 0.5rem;
     width: 15rem;
-    border: 1px solid#f5f5f5 ;;
-    margin-right: 4rem;
+    border: 1px solid#f5f5f5;
     background-color: whitesmoke;
-    margin-left: auto;
-    height: 4rem;
+    height: 8rem;
     overflow: scroll;
     overflow-x: hidden;
+    position: fixed;
+    right: 9rem;
+    top: 3rem;
 }

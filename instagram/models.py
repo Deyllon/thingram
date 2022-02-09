@@ -23,3 +23,12 @@ class Mensagem(models.Model):
     emissario = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='emisario')
     destinatario = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='destinatario')
     emissario_nome = models.CharField(max_length=500, default="")
+
+class Notificacao(models.Model):
+    #1 = like, 2 = comentario, 3= follow
+    tipo = models.IntegerField()
+    para = models.ForeignKey(Perfil, related_name='para', on_delete=models.CASCADE, null=True)
+    de = models.ForeignKey(Perfil,related_name='de', on_delete=models.CASCADE, null=True)
+    postagem = models.ForeignKey('Postagem', on_delete=models.CASCADE, related_name='postagem', blank=True, null=True)
+    data = models.DateTimeField(default=datetime.now())
+    usuario_viu = models.BooleanField(default=False)

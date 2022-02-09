@@ -1,7 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from usuarios.views import seguidores
-from .models import Postagem, Comentario, Mensagem
+from .models import Postagem, Comentario, Mensagem, Notificacao
 from usuarios.models import Perfil
 
 
@@ -45,7 +45,9 @@ def like(request):
             posts.save()
             result = posts.quantidade_de_like()
             resposta = 'adicionar'
-        
+            notificacao = Notificacao.objects.create(tipo=1,de=request.user.perfil, para= posts.usuario, postagem=posts)
+            notificacao.save()
+            
         return JsonResponse({'result': result, 'resposta': resposta })
 
 def comentar(request):
@@ -57,6 +59,8 @@ def comentar(request):
     comentar = comentario_feito
     comentario = Comentario.objects.create(postagem=postagem, comentario=comentar, usuario=usuario)
     comentario.save()
+    notificacao = Notificacao.objects.create(postagem=postagem,tipo=2,para=postagem.usuario, de=request.user.perfil,)
+    notificacao.save()
     return HttpResponse('Comentario feito com sucesso')
 
 def visualizar_post(request, pk):
@@ -127,3 +131,26 @@ def ler_mensagem(request,pk):
     perfil = get_object_or_404(Perfil, pk=pk)
     mensagem = Mensagem.objects.filter(emissario=perfil, destinatario=request.user.perfil)| Mensagem.objects.filter(emissario=request.user.perfil, destinatario=perfil) 
     return JsonResponse({"messages":list(mensagem.values())})
+
+def notificacao_postagem(request, notificacao_pk, postagem_pk):
+    notificacao = Notificacao.objects.get(pk=notificacao_pk)
+    notificacao.usuario_viu = True
+    notificacao.save()
+    return redirect('visualizar_post', postagem_pk)
+
+def notificacao_perfil(request, notificacao_pk, perfil_pk):
+    notificacao = Notificacao.objects.get(pk=notificacao_pk)
+    notificacao.usuario_viu = True
+    notificacao.save()
+    return redirect('perfil', perfil_pk )
+
+def deletar(request, pk):
+    postagem = get_object_or_404(Postagem, pk=pk)
+    postagem.delete()
+    return redirect('index')
+
+def deletar_comentario(request,pk):
+    comentario = get_object_or_404(Comentario, pk=pk)
+    comentario.delete()
+    return redirect('index')
+

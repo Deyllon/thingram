@@ -17,3 +17,11 @@
 .icone_perfil__post:hover{
     cursor: pointer;
 }
+.icone_remover__post{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 19rem;
+}
+.icone_remover__post--comentario{
+    margin-right: 4.4rem;
+}

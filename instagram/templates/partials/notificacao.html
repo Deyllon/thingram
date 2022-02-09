@@ -1,0 +1,56 @@
+{% load static %}
+<p class="paragrafo__header">{{notificacoes.count}}</p>
+<li onclick="abrirLike()"><h2> <img class="icone__header" src="{% static 'imagem/silhueta-de-formato-simples-de-coracao.png' %}" alt="" ></h2></li>
+<div id="container_like__header" class="container_likes__header">
+    <ul>
+        {% for notificacao in notificacoes %}
+            {% if notificacao.postagem %}
+                {% if notificacao.tipo == 1 %}
+                    <a href="{% url 'notificacao_postagem' notificacao.pk notificacao.postagem.pk %}" class="link_like__header"> <li class="lista_like__header"><img class="imagem__header" src="{{notificacao.de.foto.url}}" alt=""> <h2 class="titulo_like__header">{{notificacao.de.nome}} gostou do seu post</h2></li></a>
+                {% elif notificacao.tipo == 2 %}
+                    <a href="{% url 'notificacao_postagem' notificacao.pk notificacao.postagem.pk %}" class="link_like__header"> <li class="lista_like__header"><img class="imagem__header" src="{{notificacao.de.foto.url}}" alt=""> <h2 class="titulo_like__header">{{notificacao.de.nome}} comentou no  seu post</h2></li></a>
+                {% endif %}
+            {% else %}
+                <a href="{% url 'notificacao_perfil' notificacao.pk notificacao.de.pk %}" class="link_like__header"> <li class="lista_like__header"><img class="imagem__header" src="{{notificacao.de.foto.url}}" alt=""> <h2 class="titulo_like__header">{{notificacao.de.nome}} começou a seguir você</h2></li></a>
+            {% endif %}
+        {% endfor %}
+        <p class="sem__header">Sem notificações novas:</p>
+        {% for notificacao in notificacao_vista %}
+        {% if notificacao.postagem %}
+            {% if notificacao.tipo == 1 %}
+                <a href="{% url 'notificacao_postagem' notificacao.pk notificacao.postagem.pk %}" class="link_like__header"> <li class="lista_like__header"><img class="imagem__header" src="{{notificacao.de.foto.url}}" alt=""> <h2 class="titulo_like__header">{{notificacao.de.nome}} gostou do seu post</h2></li></a>
+            {% elif notificacao.tipo == 2 %}
+                <a href="{% url 'notificacao_postagem' notificacao.pk notificacao.postagem.pk %}" class="link_like__header"> <li class="lista_like__header"><img class="imagem__header" src="{{notificacao.de.foto.url}}" alt=""> <h2 class="titulo_like__header">{{notificacao.de.nome}} comentou no  seu post</h2></li></a>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'notificacao_perfil' notificacao.pk notificacao.de.pk %}" class="link_like__header"> <li class="lista_like__header"><img class="imagem__header" src="{{notificacao.de.foto.url}}" alt=""> <h2 class="titulo_like__header">{{notificacao.de.nome}} começou a seguir você</h2></li></a>
+        {% endif %}
+    {% endfor %}
+    </ul>
+</div>  
+
+<script>
+    function abrirLike(){               
+        let like = document.getElementById('container_like__header');
+        let logout = document.getElementById('container_logout__header')
+        if(like.className ==='container_likes__header'){
+            if(logout.className ==='container_log__header--ativo'){
+                logout.classList.remove('container_log__header--ativo')
+                logout.classList.add('container_log__header')
+                like.classList.remove('container_likes__header');
+                like.classList.add('container_likes__header--ativo');
+            }
+            else{
+                like.classList.remove('container_likes__header');
+                like.classList.add('container_likes__header--ativo');
+            }              
+        }
+        else{
+            like.classList.remove('container_likes__header--ativo');
+            like.classList.add('container_likes__header');
+            
+        }
+        
+    }
+</script>
+

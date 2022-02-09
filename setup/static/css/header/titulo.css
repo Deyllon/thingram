@@ -10,3 +10,12 @@
     margin-top: 0.5rem;
     margin-left: 1rem;
 }
+.paragrafo__header{
+    padding-top: 0.10rem;
+    font-weight: bold;
+    padding-right: 0.10rem;
+}
+.sem__header{
+    margin-left: 1rem;
+    font-weight: bold;
+}

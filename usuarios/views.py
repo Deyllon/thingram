@@ -2,8 +2,9 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.models import User
 from django.contrib import auth
 from usuarios.validator import valida_nome
-from .validator import nome_unico, valida_email, valida_nome, valida_senha
+from .validator import nome_unico, valida_email, valida_nome, valida_senha, nome_unico_perfil
 from .models import Perfil
+from instagram.models import Notificacao
 
 
 
@@ -51,16 +52,27 @@ def seguidores(request, pk):
         perfil.seguidores.remove(request.user)
     else:
         perfil.seguidores.add(request.user)
+        notificacao = Notificacao.objects.create(tipo=3,de=request.user.perfil, para=perfil)
+        notificacao.save()
     return redirect('index')
 
 def edita_perfil(request,pk):
     perfil = get_object_or_404(Perfil, pk=pk)
     if request.method == 'POST':
         nome_perfil = request.POST['nome_perfil']
+        if nome_unico_perfil(nome_perfil):
+            return redirect('edita_perfil', pk) 
+        if not nome_perfil:
+            nome_perfil= perfil.nome
+        
         bio = request.POST['bio']
-        foto_perfil = request.FILES['foto_perfil']
-        perfil.nome= nome_perfil
-        perfil.foto = foto_perfil
+        if not bio:
+            bio=perfil.bio
+        
+        if 'foto_perfil' in request.FILES:
+            foto_perfil = request.FILES['foto_perfil']
+            perfil.foto = foto_perfil
+        perfil.nome= nome_perfil   
         perfil.bio = bio
         perfil.save()
         return redirect('index')

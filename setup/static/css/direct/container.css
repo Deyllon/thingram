@@ -25,6 +25,7 @@
 .container_inbox__mensagem{
     background-color: #f5f5f5;
     margin: 1rem 0rem;
+    margin-bottom: 1rem;
 }
 .div_inbox__mensagem{
     display: flex;

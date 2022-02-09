@@ -1,3 +1,4 @@
+{% load custom_tags %}
 {% load static %}
 <header class="header__header">
     <ul class="container__header">
@@ -12,7 +13,7 @@
             <li><h2><a href="{% url 'postar' user.perfil.pk %} "><img class="icone__header" src="{% static 'imagem/postagem-no-instagram.png' %}" alt=""></a></h2></li>
             <li><h2><a href="{% url 'index' %}"><img class="icone__header" src="{% static 'imagem/casa.png' %}" alt=""></a></h2></li>
             <li><h2><a href="{% url 'mensagem' %}"><img class="icone__header" src="{% static 'imagem/balao-de-bate-papo.png' %}" alt=""></a></h2></li>
-            <li onclick="abrirLike()"><h2><img class="icone__header" src="{% static 'imagem/silhueta-de-formato-simples-de-coracao.png' %}" alt="" ></h2></li>
+            {% ver_notificacao %}
             <li onclick="abrirLogout()"><h2><img class=" icone__header icone__header--perfil" src="{% static 'imagem/usuario-de-perfil.png' %}" alt=""></h2></li>
         </div>
     </ul> 
@@ -21,37 +22,8 @@
         <h2 class="logout__header"><a href="{% url 'edita_perfil' user.perfil.pk %}" class="link__header">Editar perfil</a></h2>
         <h2 class="logout__header"><a href="{% url 'logout' %}" class="link__header">Logout</a></h2>
     </div> 
-    <div id="container_like__header" class="container_likes__header">
-        <ul>
-            <a href="" class="link_like__header"> <li class="lista_like__header"><img class="imagem__header" src="usuario-de-perfil.png" alt=""> <h2 class="titulo_like__header">Titulo do perfil</h2></li></a>
-            <a href="" class="link_like__header"> <li class="lista_like__header"><img class="imagem__header" src="usuario-de-perfil.png" alt=""> <h2 class="titulo_like__header">Titulo do perfil</h2></li></a>
-            <a href="" class="link_like__header"> <li class="lista_like__header"><img class="imagem__header" src="usuario-de-perfil.png" alt=""> <h2 class="titulo_like__header">Titulo do perfil</h2></li></a>
-        </ul>
-    </div>  
-    <script>
-        function abrirLike(){               
-            let like = document.getElementById('container_like__header');
-            let logout = document.getElementById('container_logout__header')
-            if(like.className ==='container_likes__header'){
-                if(logout.className ==='container_log__header--ativo'){
-                    logout.classList.remove('container_log__header--ativo')
-                    logout.classList.add('container_log__header')
-                    like.classList.remove('container_likes__header');
-                    like.classList.add('container_likes__header--ativo');
-                }
-                else{
-                    like.classList.remove('container_likes__header');
-                    like.classList.add('container_likes__header--ativo');
-                }              
-            }
-            else{
-                like.classList.remove('container_likes__header--ativo');
-                like.classList.add('container_likes__header');
-                
-            }
-            
-        }
-    </script>
+   
+    
     <script>
         function abrirLogout(){
             let like = document.getElementById('container_like__header');

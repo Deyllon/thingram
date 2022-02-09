@@ -1,18 +1,24 @@
 .formulario_inbox__mensagem{
     position: absolute;
-    bottom: 20.3rem;
+    bottom: 18rem;
     display: flex;
-    width: 38.2rem;
+    width: 39.2rem;
     height: 2rem;
 }
 .input_text_inbox__mensagem{
-    width: 34rem;
+    width: 35rem;
+    border: 0 none;
 }
 .input_text_inbox__mensagem:focus{
-
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
 }
 .input_submit_inbox__mensagem{
     width: 3.9rem;
     background-color: white;
     border: none;
+}
+.input_submit_inbox__mensagem:hover{
+    cursor: pointer;
 }

@@ -7,18 +7,18 @@
             <main class="main"> 
               
                     <div class="container__sugestoes">
-                        <h3><a href="{% url 'perfil' user.pk %}"><img class="usuario__sugestoes usuario__sugestoes--user" src="{{ user.perfil.foto.url }}" alt=""></a></h3>
+                        <h3><a href="{% url 'perfil' user.perfil.pk %}"><img class="usuario__sugestoes usuario__sugestoes--user" src="{{ user.perfil.foto.url }}" alt=""></a></h3>
                         {% if perfils %} 
                             <h4 class="titulo__sugestoes">Perfis sugeridos</h4>
                             <ul>
                                 {% for perfis in perfils %}     
                             
-                                    <li class="lista__sugestoes"><a href="{% url 'perfil' perfis.user.pk %}"><img class="usuario__sugestoes" src="{{ perfis.foto.url}}" alt=""></a>
+                                    <li class="lista__sugestoes"><a href="{% url 'perfil' perfis.pk %}"><img class="usuario__sugestoes" src="{{ perfis.foto.url}}" alt=""></a>
                                         <a href="{% url 'perfil' perfis.pk %}" class="link__sugestoes"><p>{{perfis.nome}}</p></a>
                                         {% if user in perfis.seguidores.all %}
-                                            <a href="{% url 'seguidores' perfis.user.pk %}" class="link__sugestoes link__sugestoes--seguir">Não seguir</a>
+                                            <a href="{% url 'seguidores' perfis.pk %}" class="link__sugestoes link__sugestoes--seguir">Não seguir</a>
                                         {% else %}
-                                            <a href="{% url 'seguidores' perfis.user.pk %}" class="link__sugestoes link__sugestoes--seguir">Seguir</a>
+                                            <a href="{% url 'seguidores' perfis.pk %}" class="link__sugestoes link__sugestoes--seguir">Seguir</a>
                                         {% endif %}
                                     </li>
                                 {% endfor %}

@@ -15,7 +15,9 @@
                         <h3 class="titulo_perfil__post">{{ postagem.usuario.nome }}</h3>
                         <h5 class="titulo_perfil__post">Seguindo</h5>
                     </div>
+                    <a href="{% url 'deletar' postagem.pk %}"><img  id="" class="icone_remover__post" src="{% static 'imagem/removido.png' %}" alt=""></a>
                     <img onclick="voltar()" id="x" class="icone_perfil__post" src="{% static 'imagem/x.png' %}" alt="">
+                    
                 </div>
                 {% if comentarios %}
                     <ul>
@@ -24,6 +26,7 @@
                                 <img class="imagem_perfil__post" src="{{ comentario.usuario.foto.url }}" alt="">
                                 <h3 class="titulo_perfil__post">{{ comentario.usuario.nome }}</h3>
                                 <h4 class=" titulo_perfil__post titulo_perfil__post--comentario">{{ comentario.comentario }}</h4>
+                                <a href="{% url 'deletar_comentario' comentario.pk %}"><img  id="" class="icone_remover__post icone_remover__post--comentario" src="{% static 'imagem/removido.png' %}" alt=""></a>
                             </li>
                         {% endfor %}
                     </ul>
