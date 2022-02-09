@@ -10,12 +10,24 @@
                 <h5 class="titulo__publicar" >{{ perfil.nome }}</h5>
                 <label class='label__publicar' for="foto">Adicionar foto</label>
                 <input type="file" name="foto" id="foto" hidden>
-                <img class="imagem_postada__publicar" src="" alt="" hidden>
+                <img id="imagem_postada" class="imagem_postada__publicar" src="" alt="" hidden="True" >
                 <label class='label__publicar' for="descriçao">Adicionar descrição</label>
                 <input class="input__publicar" type="text" name="descricao" id="descriçao">
                 <input class="input__publicar input__publicar--button" type="submit" value="Postar">
             </form>
         </main>
     </div>
-   
+    <script>
+        $('#foto').change(function(){
+            const imagem = this.files[0];
+            if (imagem){
+                let ler_imagem = new FileReader();
+                ler_imagem.onload = function (evento){
+                    $('#imagem_postada').attr('src', evento.target.result)
+                    $('#imagem_postada').removeAttr('hidden')
+                }
+                ler_imagem.readAsDataURL(imagem)
+            }
+        })      
+    </script>
 {% endblock %}

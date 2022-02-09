@@ -2,9 +2,9 @@
 {% load static %}
 {% block content %}
         <div class="container__login">
-            <a target="_blank" href="https://www.pexels.com/pt-br/foto/alvorecer-amanhecer-aurora-moda-3865624/" class="container_img__login" aria-label="Imagem de uma pessoa deitada">
-                
+            <a id="imagem_deitada"  target="_blank" href="https://www.pexels.com/pt-br/foto/alvorecer-amanhecer-aurora-moda-3865624/" class="container_img__login" aria-label="Imagem de uma pessoa deitada">
             </a>
+            <img class="container_img__login--cadastro" id="imagem_cadastro" src="" alt="" hidden="True">
             <div class="container_form__login">
                 <H1 class="Titulo__login">Thingram</H1>
                 <form class="form__login" action="{% url 'cadastro' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
@@ -22,4 +22,18 @@
                 </form>
             </div>
         </div>
+        <script>
+            $('#foto').change(function(){
+                const imagem = this.files[0];
+                if (imagem){
+                    let ler_imagem = new FileReader();
+                    ler_imagem.onload = function (evento){
+                        $('#imagem_cadastro').attr('src', evento.target.result)
+                        $('#imagem_cadastro').removeAttr('hidden')
+                        $('#imagem_deitada').prop('hidden', true)
+                    }
+                    ler_imagem.readAsDataURL(imagem)
+                }
+            })      
+        </script>
 {% endblock %}

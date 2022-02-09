@@ -73,18 +73,23 @@ def visualizar_post(request, pk):
     return render (request, 'visualizar_post.html', contexto)
 
 def busca(request):
-    perfil_buscado = Perfil.objects.all()
-    if 'busca' in request.GET:
-        busca_perfil = request.GET['busca']
-        if busca:
-            perfil_buscado = perfil_buscado.filter(nome__icontains=busca_perfil)
-    postagem = Postagem.objects.filter(usuario=perfil_buscado[0:1])
-    contexto = {
-        'perfis': perfil_buscado,
-        'postagem': postagem
-    }
-    return render (request, 'busca.html', contexto)
-
+    jsonn = None
+    perfil = request.POST.get('perfil')
+    perfil_buscado = Perfil.objects.filter(nome__icontains=perfil)
+    if len(perfil_buscado) > 0 and len(perfil) > 0:
+        data = []
+        for perfis in perfil_buscado:
+            k = {
+                'pk': perfis.pk,
+                'nome': perfis.nome,
+                'foto': str(perfis.foto.url) 
+            }
+            data.append(k)
+        jsonn = data
+    else:
+        jsonn = 'Nenhum perfil encontrado'
+    return JsonResponse({'data': jsonn})
+    
 def mensagem(request):
     mensagem = Mensagem.objects.exclude(emissario=request.user.perfil).distinct('emissario_id').order_by('emissario_id', '-data')
    
@@ -144,13 +149,15 @@ def notificacao_perfil(request, notificacao_pk, perfil_pk):
     notificacao.save()
     return redirect('perfil', perfil_pk )
 
-def deletar(request, pk):
-    postagem = get_object_or_404(Postagem, pk=pk)
+def deletar(request):
+    id = int(request.POST.get('postagem_id'))
+    postagem = get_object_or_404(Postagem, id=id)
     postagem.delete()
     return redirect('index')
 
-def deletar_comentario(request,pk):
-    comentario = get_object_or_404(Comentario, pk=pk)
+def deletar_comentario(request):
+    id = int(request.POST.get('comentario_id'))
+    comentario = get_object_or_404(Comentario,id=id )
     comentario.delete()
-    return redirect('index')
+    return HttpResponse('Comentario apagado com sucesso')
 

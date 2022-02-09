@@ -15,6 +15,6 @@ urlpatterns = [
     path('ler_mensagem/<int:pk>', views.ler_mensagem, name='ler_mensagem'),
     path('notificacao/<int:notificacao_pk>/post<int:postagem_pk>', views.notificacao_postagem, name='notificacao_postagem'),
     path('notificacao/<int:notificacao_pk>/perfil<int:perfil_pk>', views.notificacao_perfil, name='notificacao_perfil'),
-    path('deletar_postagem/<int:pk>', views.deletar, name='deletar'),
-    path('deletar_comentario/<int:pk>', views.deletar_comentario, name='deletar_comentario')
+    path('deletar_postagem/', views.deletar, name='deletar'),
+    path('deletar_comentario/', views.deletar_comentario, name='deletar_comentario')
 ]

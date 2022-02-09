@@ -5,11 +5,11 @@
 }
 .ul__perfil--numeros{
     margin-top: 1rem;
-    margin-left: 17.9%
+    padding-right: 2rem;
 }
 .bio__perfil{
     display: flex;
     flex-direction: column;
-    margin-left: 47%;
+    margin-left: 21.2rem;
     margin-top: 0.5rem;
 }

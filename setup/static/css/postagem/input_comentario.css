@@ -9,6 +9,19 @@
     border: 0 none;
     outline: 0;
 }
+.input_texto__postagem--comentario{
+    width: 50%;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+}
+.input_botao__postagem--comentario{
+    border-radius: 10px;
+    width: 10%;
+    border: none;
+    margin-left: 1rem;
+    background-color: white;
+}
 .input_botao__postagem{
     border-radius: 10px;
     width: 10%;

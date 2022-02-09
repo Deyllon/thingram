@@ -15,8 +15,10 @@
                         <h3 class="titulo_perfil__post">{{ postagem.usuario.nome }}</h3>
                         <h5 class="titulo_perfil__post">Seguindo</h5>
                     </div>
-                    <a href="{% url 'deletar' postagem.pk %}"><img  id="" class="icone_remover__post" src="{% static 'imagem/removido.png' %}" alt=""></a>
-                    <img onclick="voltar()" id="x" class="icone_perfil__post" src="{% static 'imagem/x.png' %}" alt="">
+                    {% if request.user.perfil.pk == postagem.usuario.pk or user.is_staff %}
+                        <a  id="deletar_postagem" href="#"><img  id="{{postagem.pk}}" class="icone_remover__post" src="{% static 'imagem/removido.png' %}" alt=""></a>
+                    {% endif %}
+                        <img onclick="voltar()" id="x" class="icone_perfil__post" src="{% static 'imagem/x.png' %}" alt="">
                     
                 </div>
                 {% if comentarios %}
@@ -26,13 +28,21 @@
                                 <img class="imagem_perfil__post" src="{{ comentario.usuario.foto.url }}" alt="">
                                 <h3 class="titulo_perfil__post">{{ comentario.usuario.nome }}</h3>
                                 <h4 class=" titulo_perfil__post titulo_perfil__post--comentario">{{ comentario.comentario }}</h4>
-                                <a href="{% url 'deletar_comentario' comentario.pk %}"><img  id="" class="icone_remover__post icone_remover__post--comentario" src="{% static 'imagem/removido.png' %}" alt=""></a>
+                                {% if request.user.perfil.pk == comentario.usuario.pk or user.is_staff %}
+                                    <a id="deletar_comentario" href="#"><img  id="{{comentario.pk}}" class="icone_remover__post icone_remover__post--comentario" src="{% static 'imagem/removido.png' %}" alt=""></a>
+                                {% endif %}    
                             </li>
+                            
                         {% endfor %}
                     </ul>
                 {% endif %}
             </div>
         </div>
+        <form id="{{ postagem.id }}" class="container_comentario__postagem--comentario" action="{% url 'comentar' %}" method="post">{% csrf_token %}
+            <input  type="text" name="" hidden id="username" value="{{request.user.perfil.id}}">
+            <input class="input_texto__postagem--comentario" type="text" name="comentar" id="{{ postagem.id }}" placeholder="adicione um comentario">
+            <input class="input_botao__postagem--comentario" type="submit" value="Postar">
+        </form>
         <script>
             function voltar(){
                 window.history.back()
@@ -41,4 +51,67 @@
         </script>
     </main>
 </div>
+<script>
+    $("#deletar_comentario").click(function(e){
+        e.preventDefault()
+        const comentario = $(this).find('.icone_remover__post--comentario').attr('id')
+        console.log(comentario)
+        $.ajax({
+            type: 'POST',
+            url: '{% url "deletar_comentario" %}',
+            data: {
+                comentario_id: comentario,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                
+            },
+            success: function(resposta){
+                location.reload();
+            }
+        })
+    })
+</script>
+<script>
+    $("#deletar_postagem").click(function(e){
+        e.preventDefault()
+        const postagem = $(this).find('.icone_remover__post').attr('id')
+        console.log(postagem)
+        $.ajax({
+            type: 'POST',
+            url: '{% url "deletar" %}',
+            data: {
+                postagem_id: postagem,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                
+            },
+            success: function(resposta){
+                window.history.back();
+            }
+        })
+    })
+</script>
+<script>
+    $('.container_comentario__postagem--comentario').submit(function(e){
+        e.preventDefault()
+        const post_id = $(this).attr('id')
+        const texto = $(this).find(".input_texto__postagem--comentario").val()
+        const user =  $(this).find("#username").val()
+        const url = $(this).attr('action')
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data:{
+                postid: post_id,
+                comentario: texto,
+                usuario: user,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                
+            },
+            success: function(data){
+                location.reload();
+            }
+        });
+        texto.value = ''      
+    });
+</script>
+
 {% endblock %}
