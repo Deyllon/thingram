@@ -5,6 +5,7 @@
     <div>
             {% include 'partials/header.html' %}
         <main class="main"> 
+            {% include 'partials/alertas.html' %}
             <form class="form__edita" action="{% url 'edita_perfil' perfil.pk %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
                 <img class="imagem_perfil__edita label__edita " src="{{ perfil.foto.url }}" alt="">
                 <h3 class="input__edita input__edita--titulo">{{ perfil.nome }}</h3>            

@@ -1,6 +1,7 @@
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.models import User
-from django.contrib import auth
+from django.contrib import auth, messages
 from usuarios.validator import valida_nome
 from .validator import nome_unico, valida_email, valida_nome, valida_senha, nome_unico_perfil
 from .models import Perfil
@@ -12,21 +13,31 @@ def cadastro(request):
     if request.method == 'POST':
         email = request.POST['email']
         if not valida_email(email):
+            messages.error(request, 'O email não é valido')
             return redirect('cadastro')
         nome = request.POST['nome']
         if not valida_nome(nome):
+            messages.error(request, 'O nome deve possuir apenas letras')
             return redirect('cadastro') 
         if nome_unico(nome):
-            return redirect('cadastro')         
+            messages.error(request, 'O nome já existe')
+            return redirect('cadastro')  
+        if nome_unico_perfil(nome):
+            messages.error(request, 'O Nome já está cadastrado')  
+            return redirect('cadastro')     
         senha = request.POST['senha']
         senha2 = request.POST['senha2']
         if not valida_senha(senha, senha2):
+            messages.error(request, 'A senha não é forte o suficiente'
+                           '(ela deve possuir pelo menos 6 letras, ter pelo menos um caractere' 
+                           'maiusculo e minusculo e não ter espaços) ou as senhas não são iguais')
             return redirect('cadastro')
-        foto = request.FILES['foto']
         usuario = User.objects.create_user(username=nome, email=email, password=senha)
         usuario.save()
+        if 'foto' in request.FILES: 
+            foto = request.FILES['foto'] 
+            usuario.perfil.foto = foto
         usuario.perfil.nome = nome
-        usuario.perfil.foto = foto
         usuario.save()
         return redirect('login')
     return render(request,'cadastro.html')
@@ -61,6 +72,7 @@ def edita_perfil(request,pk):
     if request.method == 'POST':
         nome_perfil = request.POST['nome_perfil']
         if nome_unico_perfil(nome_perfil):
+            messages.error(request, 'O Nome já está cadastrado')
             return redirect('edita_perfil', pk) 
         if not nome_perfil:
             nome_perfil= perfil.nome

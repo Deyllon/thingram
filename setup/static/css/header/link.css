@@ -16,4 +16,5 @@
 .link_pesquisa__header{
     text-decoration: none;
     color: black;
+    display: flex;
 }

@@ -28,3 +28,9 @@
     display: flex;
     
 }
+.container_comentario__postagem--comentario{
+    padding-top: 0.5rem;
+    display: flex;
+    margin-bottom: 0.5rem;
+    margin-left: 59.8rem;
+}

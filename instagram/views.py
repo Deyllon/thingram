@@ -1,3 +1,4 @@
+
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from usuarios.views import seguidores
@@ -161,3 +162,19 @@ def deletar_comentario(request):
     comentario.delete()
     return HttpResponse('Comentario apagado com sucesso')
 
+def ler_comentarios(request,pk):
+    id_postagem = int(request.GET.get('postagem_id'))
+    postagem = get_object_or_404(Postagem, id=id_postagem)
+    comentarios = Comentario.objects.filter(postagem=postagem)
+    data = []
+    for comentario in comentarios:
+        k = {
+            'pk': comentario.pk,
+            'nome': comentario.usuario.nome,
+            'conteudo': comentario.comentario,
+            'foto': str(comentario.usuario.foto.url),
+            'usuario': comentario.usuario.pk,
+            'usuario_atual': request.user.perfil.pk
+        }
+        data.append(k)
+    return JsonResponse({'data': data})
