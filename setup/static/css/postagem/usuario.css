@@ -12,3 +12,10 @@
     height: 2rem;
     width: 2rem;
 }
+@media  screen and (max-width:767px){
+    .usuario__postagem{
+        height: 2rem;
+        width: 2rem;
+        
+    }
+}

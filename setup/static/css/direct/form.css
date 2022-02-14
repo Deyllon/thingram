@@ -1,6 +1,6 @@
 .formulario_inbox__mensagem{
     position: absolute;
-    bottom: 18rem;
+    bottom: 1rem;
     display: flex;
     width: 39.2rem;
     height: 2rem;
@@ -21,4 +21,19 @@
 }
 .input_submit_inbox__mensagem:hover{
     cursor: pointer;
+}
+@media  screen and (max-width:767px){
+    .formulario_inbox__mensagem{
+        position: absolute;
+        display: flex;
+        width: 70%;
+        height: 2rem; 
+        top: 27rem;
+    }
+}
+@media screen and (min-width: 768px) and (max-width:1023px){
+    .formulario_inbox__mensagem{
+        width: 29rem;
+        bottom: 4rem;
+    }
 }

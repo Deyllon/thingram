@@ -13,7 +13,7 @@
                     <div class="div_perfil__post">
                         <img class="imagem_perfil__post" src="{{ postagem.usuario.foto.url }}" alt="">
                         <h3 class="titulo_perfil__post">{{ postagem.usuario.nome }}</h3>
-                        <h5 class="titulo_perfil__post">Seguindo</h5>
+                        <h5 class="titulo_perfil__post titulo_perfil__post--seg">Seguindo</h5>
                     </div>
                     {% if request.user.perfil.pk == postagem.usuario.pk or user.is_staff %}
                         <a  id="deletar_postagem" href="#"><img  id="{{postagem.pk}}" class="icone_remover__post" src="{% static 'imagem/removido.png' %}" alt=""></a>
@@ -122,7 +122,7 @@
                                 })
                             })
                         } else{
-                            let conteudo = '<li class="lista__post"><img class="imagem_perfil__post" src='+comentario.foto+' alt=""><h3 class="titulo_perfil__post">'+comentario.nome+'</h3><h4 class=" titulo_perfil__post titulo_perfil__post--comentario">'+comentario.conteudo+'</h4></li>'
+                            let conteudo = '<li class="lista__post"><img class="imagem_perfil__post" src='+comentario.foto+' alt=""><h3 class="titulo_perfil__post titulo_perfil__post--seg">'+comentario.nome+'</h3><h4 class=" titulo_perfil__post titulo_perfil__post--comentario">'+comentario.conteudo+'</h4></li>'
                             $('#comentario_postagem').append(conteudo)
                         }        
                     })

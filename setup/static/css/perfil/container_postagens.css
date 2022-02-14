@@ -1,5 +1,12 @@
 .container_postagens__perfil{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    padding-left: 3.91rem;
+    width: 100%;
+}
+@media screen and (min-width: 768px) and (max-width:1023px){
+    .container_postagens__perfil{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
 }

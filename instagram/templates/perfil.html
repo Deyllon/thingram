@@ -8,29 +8,25 @@
                             <div class="container_header_bio__perfil">
                                 <div class="container_header__perfil">
                                     <img class="imagem__perfil" src="{{ usuario.perfil.foto.url }}" alt="">
-                                    <ul class="ul__perfil">
-                                        <li class="item_lista__perfil"> <h3 class="titulo__perfil">{{ usuario.perfil.nome }}</h3> </li>
-                                        {% if not usuario == request.user %}
-                                            <li class="item_lista__perfil"> <a href="{% url 'inbox' usuario.perfil.pk %}"><input class="input_botao__perfil" type="button" value="Enviar mensagem"> </a> </li>
-                                            {% if user in usuario.perfil.seguidores.all %}
-                                                <li class="item_lista__perfil"> <a href="{% url 'seguidores' usuario.pk %}"> <input class="input_botao__perfil" type="button" value="Não seguir"> </a></li>
-                                            {% else %}
-                                            <li class="item_lista__perfil"> <a href="{% url 'seguidores' usuario.pk %}"><input class="input_botao__perfil" type="button" value="seguir"> </a></li>
-                                            {% endif %}
+                                    <h3 class="titulo__perfil">{{ usuario.perfil.nome }}</h3> 
+                                    {% if not usuario == request.user %}
+                                        <a class="link_header__perfil" href="{% url 'inbox' usuario.perfil.pk %}"><input class="input_botao__perfil" type="button" value="Enviar mensagem"> </a> 
+                                        {% if user in usuario.perfil.seguidores.all %}
+                                            <a class="link_header__perfil" href="{% url 'seguidores' usuario.pk %}"> <input class="input_botao__perfil" type="button" value="Não seguir"> </a>
+                                        {% else %}
+                                            <a class="link_header__perfil" href="{% url 'seguidores' usuario.pk %}"><input class="input_botao__perfil" type="button" value="seguir"> </a>
                                         {% endif %}
-                                    </ul>
+                                    {% endif %}
                                 </div>
-                                <div class="container_header__perfil container_header__perfil--numeros"> 
-                                    <ul class="ul__perfil ul__perfil--numeros" >
-                                        <li class="item_lista__perfil item_lista__perfil--numeros"> <h4>{{ numero_de_postagem }} postagens</h4> </li>
-                                        <li class="item_lista__perfil item_lista__perfil--numeros"> <h4>{{ usuario.perfil.quantidade_de_seguidores }} seguidores</h4>  </li>
-                                        <li class="item_lista__perfil item_lista__perfil--numeros"> <h4> {{ seguindo }} seguindo</h4>  </li>
-                                    </ul>
-                                </div>   
+                                
+                                <ul class="ul__perfil ul__perfil--numeros" >
+                                    <li class="item_lista__perfil item_lista__perfil--numeros"> <h4>{{ numero_de_postagem }} postagens</h4> </li>
+                                    <li class="item_lista__perfil item_lista__perfil--numeros"> <h4>{{ usuario.perfil.quantidade_de_seguidores }} seguidores</h4>  </li>
+                                    <li class="item_lista__perfil item_lista__perfil--numeros"> <h4> {{ seguindo }} seguindo</h4>  </li>
+                                </ul>
                                 <ul class="bio__perfil">
                                     <li class="lista_bio__perfil"> <p class="nome_bio__perfil"> {{usuario.perfil.nome}}</p>  </li>
-                                    <li class="lista_bio__perfil"><h5 class="biografia__perfil">{{ usuario.perfil.bio }}</h5> 
-                                    </li>
+                                    <li class="lista_bio__perfil"><h5 class="biografia__perfil">{{ usuario.perfil.bio }}</h5></li>
                                 </ul>
                             </div>
                             {% if postagens %}

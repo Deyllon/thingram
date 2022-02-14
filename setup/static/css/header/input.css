@@ -13,3 +13,18 @@
 .botao__header{
     display: none;
 }
+@media  screen and (max-width:767px){
+    .texto__header{
+        background-color: #d1d0ca;
+        border: none;
+        border-radius: 5px;
+        width: 8rem;
+        height: 1.5rem;
+        margin-top: 0.5rem;
+    }
+}
+@media screen and (min-width: 768px) and (max-width:1023px){
+    .texto__header{
+        width: 12rem;
+    }
+}

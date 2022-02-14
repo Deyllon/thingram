@@ -4,3 +4,8 @@
     margin-left: 1rem;
     word-wrap: break-word;
 }
+@media  screen and (max-width:767px){
+    .lista__post{
+        margin-left: 1rem;
+    }
+}

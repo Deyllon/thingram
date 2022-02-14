@@ -8,3 +8,6 @@
     grid-column-end: 3;
     margin-right: auto;
 }
+.label__edita--foto:hover{
+    cursor: pointer;
+}

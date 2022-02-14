@@ -19,7 +19,10 @@
                     <input  id="senha2form" class="input__login--texto" type="password" name="senha2"  placeholder="senha">
                     <label class="label__login label__login--foto" for="foto">Adicione uma foto de perfil</label>
                     <input  id="foto" type="file" accept="image/png, image/jpeg" name="foto" hidden  >
-                    <input class="input__login--submit" type="submit" value="Cadastrar" >
+                    <div class="divide_container__login--cadastro">
+                        <h2 class="titulo__login--cadastro"><a href="{% url 'login' %}" class="link__login--cadastro">Login</a></h2>
+                        <input class="input__login--submit" type="submit" value="Cadastrar" >
+                    </div>
                 </form>
             </div>
         </div>

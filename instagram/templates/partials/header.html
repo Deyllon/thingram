@@ -6,7 +6,7 @@
         <li class="lista__header">
             <form id="formulario_busca" action="{% url 'busca' %}">
                 <input class="texto__header" type="text" name="busca" id="buscar" placeholder="Busque um perfil">{% csrf_token %}
-                <input class="botao__header" type="submit"  value="">
+                
             </form>
             <div id="esconder" hidden>
                 <div id="container__header" class="container_pesquisa__header">
@@ -68,7 +68,7 @@
                     if (Array.isArray(data)){
                         data.forEach(perfil=>{
                             
-                            const conteudo =   "<div id='container__header' class='container_pesquisa__header'><div  class='div_pesquisa__header'><a class='link_pesquisa__header'  href=''><img class='imagem__header' src="+perfil.foto+" alt=''><h5 class='titulo_pesquisa__header'>"+perfil.nome+"</h5></a> </div></div>"
+                            const conteudo =   "<div id='container__header' class='container_pesquisa__header'><div  class='div_pesquisa__header'><a class='link_pesquisa__header'  href='/perfil/"+perfil.pk+"'><img class='imagem__header' src="+perfil.foto+" alt=''><h5 class='titulo_pesquisa__header'>"+perfil.nome+"</h5></a> </div></div>"
                             $('#esconder').append(conteudo)
                         })
                     } else{
@@ -86,11 +86,18 @@
         const pesquisa = document.getElementById('buscar')
         const esconder_div = document.getElementById('esconder')
         pesquisa.addEventListener('keyup', e =>{
-            console.log(e.target.value)
             if (esconder_div.hasAttribute('hidden')){
                 esconder_div.removeAttribute('hidden')
             }
             busca(e.target.value)
+        })
+    </script>
+    <script>
+        $('#formulario_busca').keydown(function(e){
+            if (e.keyCode == 13){
+                e.preventDefault()
+                return false
+            }
         })
     </script>
 </header>

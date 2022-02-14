@@ -26,3 +26,13 @@
     margin-right: 3.65rem;
     margin-left: auto;
 }
+@media  screen and (max-width:767px){
+    .icone_remover__post{
+        margin-left: 0;
+    }
+}
+@media screen and (min-width: 768px) and (max-width:1023px){
+    .icone_remover__post{
+        margin-left: 3.1rem;
+    }
+}

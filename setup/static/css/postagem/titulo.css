@@ -9,3 +9,9 @@
     padding-top: 0.1rem;
     margin-right: 0.5rem;
 }
+@media  screen and (max-width:767px){
+    .titulo__postagem{
+        padding-top: 0;
+        padding-left: 2rem;
+    }
+}

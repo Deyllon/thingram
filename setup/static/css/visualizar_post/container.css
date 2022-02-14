@@ -32,5 +32,27 @@
     padding-top: 0.5rem;
     display: flex;
     margin-bottom: 0.5rem;
-    margin-left: 59.8rem;
+    margin-left: 40rem;
+}
+@media  screen and (max-width:767px){
+    .container__post_imagem{
+        margin-left: 0;
+    }
+    .container__post_comentario{
+        margin-right: 0;
+    }
+    .container_perfil__post{
+        padding-left: 0;
+    }
+    .container_comentario__postagem--comentario{
+        margin-left: 10rem;
+    }
+}
+@media screen and (min-width: 768px) and (max-width:1023px){
+    .container_comentario__postagem--comentario{
+        margin-left: 24rem;
+    }
+    .container_perfil__post{
+        padding-left: 1rem;
+    }
 }

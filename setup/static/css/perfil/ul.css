@@ -1,6 +1,6 @@
 .ul__perfil{
     display: flex;
-    margin-left: 2rem;
+    margin-left: 25rem;
     margin-top: 3rem;
 }
 .ul__perfil--numeros{
@@ -10,6 +10,6 @@
 .bio__perfil{
     display: flex;
     flex-direction: column;
-    margin-left: 21.2rem;
+    margin-left: 27rem;
     margin-top: 0.5rem;
 }

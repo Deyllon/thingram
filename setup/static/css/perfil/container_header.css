@@ -3,16 +3,15 @@
     margin-right: auto;
 }
 .container_header_bio__perfil{
-    width: 89.6%;
+    width: 100%;
     border-bottom: 1px solid #f5f5f5;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 5rem;
 }
 .container_header__perfil{
     display: flex;
-    margin-top: 5rem;
-    margin-left: 18%;
-    margin-right: 65%;
+    margin-left: 10rem;
 }
 .container_header__perfil--numeros{
     margin-top: 0rem;

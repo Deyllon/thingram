@@ -45,12 +45,15 @@ def cadastro(request):
 def login(request):
     if request.method == 'POST':
         email = request.POST['email']
-        senha = request.POST['senha'] 
-        nome = User.objects.filter(email=email).values_list('username', flat=True).get()
-        usuario_login = auth.authenticate(request, username=nome, password=senha)
-        if usuario_login is not None:
-            auth.login(request, usuario_login)
-            return redirect('index')
+        senha = request.POST['senha']
+        if email and senha is not None:
+            nome = User.objects.filter(email=email).values_list('username', flat=True).get()
+            usuario_login = auth.authenticate(request, username=nome, password=senha)
+            if usuario_login is not None:
+                auth.login(request, usuario_login)
+                return redirect('index')
+        else:
+            return redirect ('login')
     return render (request,'login.html')
 
 def logout(request):

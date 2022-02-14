@@ -20,3 +20,18 @@
     cursor: pointer;
     font-weight: bold;
 }
+@media  screen and (max-width:767px){
+    .input_texto__postagem{
+        width: 80%;
+        background-color: white;
+        border: none;
+        border-radius: 10px;
+    }
+    .input_botao__postagem{
+        border-radius: 10px;
+        width: 20%;
+        border: none;
+        margin-left: 0;
+        background-color: white;
+    }
+}

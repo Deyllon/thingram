@@ -9,8 +9,8 @@ from usuarios.models import Perfil
 
 def index(request):
     if request.user.is_authenticated:
-        postagens = Postagem.objects.order_by('data')
-        perfil = Perfil.objects.exclude(user=request.user) & Perfil.objects.exclude(seguidores=request.user)[:3]
+        postagens = Postagem.objects.order_by('-data')
+        perfil = Perfil.objects.exclude(user=request.user) & Perfil.objects.exclude(seguidores=request.user).order_by('seguidores')[:3]
         contexto = {
             'postagens': postagens,
             'perfils': perfil,
@@ -92,7 +92,7 @@ def busca(request):
     return JsonResponse({'data': jsonn})
     
 def mensagem(request):
-    mensagem = Mensagem.objects.exclude(emissario=request.user.perfil).distinct('emissario_id').order_by('emissario_id', '-data')
+    mensagem = Mensagem.objects.exclude(emissario=request.user.perfil).filter(destinatario = request.user.perfil.pk).distinct('emissario_id').order_by('emissario_id', '-data')
    
     contexto = {
         'mensagens': mensagem       
@@ -102,7 +102,7 @@ def mensagem(request):
 def inbox(request, pk):
     perfil = get_object_or_404(Perfil, pk=pk)
    
-    mensagem = Mensagem.objects.exclude(emissario=request.user.perfil).distinct('emissario_id').order_by('emissario_id', '-data')
+    mensagem = mensagem = Mensagem.objects.exclude(emissario=request.user.perfil).filter(destinatario = request.user.perfil.pk).distinct('emissario_id').order_by('emissario_id', '-data')
     contexto = {
         
         'perfil': perfil,
@@ -123,7 +123,10 @@ def enviar_mensagem(request):
 def postar(request, pk):
     perfil =get_object_or_404(Perfil, pk=pk)
     if request.method == 'POST':
-        foto = request.FILES['foto']
+        if 'foto' in request.FILES:
+            foto = request.FILES['foto']
+        else:
+            return redirect('postar', pk=perfil.id)
         descricao = request.POST['descricao']
         postagem = Postagem.objects.create(usuario= perfil, foto= foto, descricao=descricao )
         postagem.save()

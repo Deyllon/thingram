@@ -2,3 +2,9 @@
     display: flex;
     padding-left: 1rem;
 }
+@media  screen and (max-width:767px){
+    .ul__postagem{
+        display: flex;
+        padding-left: 0;
+    }
+}
