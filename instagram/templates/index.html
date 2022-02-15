@@ -25,7 +25,37 @@
                             </ul>
                         {% endif %}    
                     </div>
-                
+                    {% if postagens_seguidores %}
+                        {% for post in postagens_seguidores %}
+                   
+                        <div class="container__postagem">
+                            <div class="container_usuario__postagem">
+                                <a href="{% url 'perfil' post.usuario.pk %}"><img src="{{ post.usuario.foto.url }}" class="usuario__postagem" alt=""></a>
+                                <a href="{% url 'perfil' post.usuario.pk %}" class="link__postagem"><h5 class="titulo__postagem">{{ post.usuario.nome }}</h5></a>
+                            </div>
+                            <a href="{% url 'visualizar_post' post.pk %}"><img class="imagem__postagem" src="{{post.foto.url}}" alt=""></a>
+                            <ul class="ul__postagem">
+                                {% if user in post.like.all %}
+                                <li> <a  href="#" id="{{post.id}}" class="link__postagem--botao"> {{post.quantidade_de_like}} <img id="" class="botao__postagem" src="{% static 'imagem/silhueta-de-formato-simples-de-coracao.png' %}" alt=""></a> </li>
+                                {% else %}
+                                <li> <a href="#" id="{{post.id}}" class="link__postagem--botao"> {{post.quantidade_de_like}} <img id="like" class="botao__postagem" src="{% static 'imagem/coracao-branco.png' %}" alt=""></a> </li>
+                                {% endif %}
+                                
+                            
+                            </ul>
+                            <div class="container_descricao__postagem">
+                                <h6 class="titulo__postagem--descricao">{{post.descricao}}</h6>
+                            </div>
+                            <form id="{{ post.id }}" class="container_comentario__postagem" action="{% url 'comentar' %}" method="post">{% csrf_token %}
+                                <input  type="text" name="" hidden id="username" value="{{request.user.perfil.id}}">
+                                <input class="input_texto__postagem" type="text" name="comentar" id="{{ post.id }}" placeholder="adicione um comentario">
+                                <input class="input_botao__postagem" type="submit" value="Postar">
+                            </form>
+                        </div>
+
+                    {% endfor %}
+                {% endif %}
+                <h5 class="titulo_sempost__postagem">Mostrando posts de outros usuarios não seguidos</h5>
                 {% if postagens %}
                     {% for post in postagens %}
                    

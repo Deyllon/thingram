@@ -20,13 +20,21 @@
             <li><h2><a href="{% url 'mensagem' %}"><img class="icone__header" src="{% static 'imagem/balao-de-bate-papo.png' %}" alt=""></a></h2></li>
             {% ver_notificacao %}
             <li onclick="abrirLogout()"><h2><img class=" icone__header icone__header--perfil" src="{% static 'imagem/usuario-de-perfil.png' %}" alt=""></h2></li>
+            <div id="container_logout__header" class="container_log__header">
+                <h2 class="logout__header"><a href="{% url 'perfil' user.perfil.pk %}" class="link__header">Perfil</a></h2>
+                <h2 class="logout__header"><a href="{% url 'edita_perfil' user.perfil.pk %}" class="link__header">Editar perfil</a></h2>
+                <h2 class="logout__header"><a href="{% url 'logout' %}" class="link__header">Logout</a></h2>
+            </div> 
+            <li><h2><img class=" icone_menu__header" src="{% static 'imagem/botao-de-menu.png' %}" alt=""></h2></li>
+            <div class="container_menu__header">
+                <h2 class="logout__header"><a class="link__header" href="{% url 'perfil' user.perfil.pk %}">Perfil</a></h2>
+                <h2 class="logout__header"><a class="link__header" href="{% url 'edita_perfil' user.perfil.pk %}">Editar perfil</a></h2>
+                <h2 class="logout__header"><a class="link__header" href="{% url 'mensagem' %}">Mensagem</a></h2>
+                <h2 class="logout__header"><a class="link__header" href="{% url 'postar' user.perfil.pk %}">Postar</a></h2>
+                <h2 class="logout__header"><a class="link__header" href="{% url 'logout' %}">Logout</a></h2>
+            </div>
         </div>
     </ul> 
-    <div id="container_logout__header" class="container_log__header">
-        <h2 class="logout__header"><a href="{% url 'perfil' user.perfil.pk %}" class="link__header">Perfil</a></h2>
-        <h2 class="logout__header"><a href="{% url 'edita_perfil' user.perfil.pk %}" class="link__header">Editar perfil</a></h2>
-        <h2 class="logout__header"><a href="{% url 'logout' %}" class="link__header">Logout</a></h2>
-    </div> 
    
     
     <script>

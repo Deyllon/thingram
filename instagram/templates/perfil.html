@@ -12,9 +12,9 @@
                                     {% if not usuario == request.user %}
                                         <a class="link_header__perfil" href="{% url 'inbox' usuario.perfil.pk %}"><input class="input_botao__perfil" type="button" value="Enviar mensagem"> </a> 
                                         {% if user in usuario.perfil.seguidores.all %}
-                                            <a class="link_header__perfil" href="{% url 'seguidores' usuario.pk %}"> <input class="input_botao__perfil" type="button" value="Não seguir"> </a>
+                                            <a class="link_header__perfil" href="{% url 'seguidores' usuario.perfil.pk %}"> <input class="input_botao__perfil" type="button" value="Não seguir"> </a>
                                         {% else %}
-                                            <a class="link_header__perfil" href="{% url 'seguidores' usuario.pk %}"><input class="input_botao__perfil" type="button" value="seguir"> </a>
+                                            <a class="link_header__perfil" href="{% url 'seguidores' usuario.perfil.pk %}"><input class="input_botao__perfil" type="button" value="seguir"> </a>
                                         {% endif %}
                                     {% endif %}
                                 </div>

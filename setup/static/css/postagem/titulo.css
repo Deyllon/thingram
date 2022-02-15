@@ -9,6 +9,13 @@
     padding-top: 0.1rem;
     margin-right: 0.5rem;
 }
+.titulo_sempost__postagem{
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+}
 @media  screen and (max-width:767px){
     .titulo__postagem{
         padding-top: 0;

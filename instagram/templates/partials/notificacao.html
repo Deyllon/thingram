@@ -1,6 +1,6 @@
 {% load static %}
 <p class="paragrafo__header">{{notificacoes.count}}</p>
-<li onclick="abrirLike()"><h2> <img class="icone__header" src="{% static 'imagem/silhueta-de-formato-simples-de-coracao.png' %}" alt="" ></h2></li>
+<li onclick="abrirLike()"><h2> <img class="icone__notificacao" src="{% static 'imagem/silhueta-de-formato-simples-de-coracao.png' %}" alt="" ></h2></li>
 <div id="container_like__header" class="container_likes__header">
     <ul>
         {% for notificacao in notificacoes %}

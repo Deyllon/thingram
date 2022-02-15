@@ -4,6 +4,17 @@
     margin-right: 2rem;
    
 }
+.icone__notificacao{
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-right: 2rem;
+}
+.icone_menu__header{
+    display: none;
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-right: 2rem;
+}
 .icone__header:hover{
     cursor: pointer;
    
@@ -18,4 +29,27 @@
     height: 2rem;
     border-radius: 100%;
     
+}
+@media  screen and (max-width:424px){
+    .icone__header{
+        display: none;
+    }
+    .icone_menu__header{
+        display:block;
+        height: 1.5rem;
+        width: 1.5rem;
+        margin-top: 0.5rem;
+        margin-left: 1rem;
+    }
+    .icone__notificacao{
+        height: 1.5rem;
+        width: 1.5rem;
+        margin-right: 0;
+        margin-top: 0.5rem;
+    }
+}
+@media  screen and (min-width:425px) and (max-width:767){
+    .icone__notificacao{
+        margin-right: 3rem;
+    }
 }
