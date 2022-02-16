@@ -1,0 +1,17 @@
+.Titulo__login{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    font-family: 'Mochiy Pop P One', sans-serif;
+}
+.texto__login{
+    margin-top: 1rem;
+}
+@media  screen and (max-width:767px){
+    .Titulo__login{
+        font-size: 1rem;
+        font-weight: bold;
+        margin-top: 0;
+        font-family: 'Mochiy Pop P One', sans-serif;
+    }
+}

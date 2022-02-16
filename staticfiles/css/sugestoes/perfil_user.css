@@ -1,0 +1,9 @@
+.usuario__sugestoes{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+}
+.usuario__sugestoes--user{
+    width: 4rem;
+    height: 4rem;
+}

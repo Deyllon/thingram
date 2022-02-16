@@ -1,0 +1,41 @@
+.titulo__header{
+    font-family: 'Mochiy Pop P One', sans-serif;
+    font-weight: bold;
+}
+.logout__header{
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.titulo_like__header{
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+}
+.paragrafo__header{
+    padding-top: 0.10rem;
+    font-weight: bold;
+    padding-right: 0.10rem;
+}
+.sem__header{
+    margin-left: 1rem;
+    font-weight: bold;
+}
+.titulo_pesquisa__header{
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
+@media  screen and (min-width:320px) and (max-width:374px) {
+    .titulo__header{
+        display: none;
+    }
+}
+@media  screen and (min-width:375px) and (max-width:424px) {
+    .titulo__header{
+        display: none;
+    }
+}
+@media  screen and (min-width:425px) and (max-width:767px) {
+    .titulo__header{
+        display: none;
+    }
+}

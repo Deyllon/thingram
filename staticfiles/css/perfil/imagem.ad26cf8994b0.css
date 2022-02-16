@@ -1,0 +1,26 @@
+.imagem__perfil{
+    margin-top: 1rem;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+    margin-left: 10rem;
+}
+.imagem_post__perfil{
+    width: 100%;
+    height: 20rem;
+}
+@media screen and (max-width: 767px) {
+    .imagem__perfil{
+        display: flex;
+        margin-left: 1rem;
+    }
+    .imagem_post__perfil{
+        height: 10rem;
+    }
+}
+@media screen and (min-width: 768px) and (max-width:1023px){
+    .imagem_post__perfil{
+        width: 100%;
+        height: 20rem;
+    }
+}

@@ -1,0 +1,19 @@
+.container__busca{
+    margin-top: 6rem;
+    margin-left: auto;
+    border: 1px solid #f5f5f5;
+    width: 70%;
+    height: 40rem;
+    overflow: scroll;
+    overflow-x: hidden;
+    margin-bottom: 2rem;
+    margin-right: auto;
+}
+.container_img__busca{
+    width: 25rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    overflow-wrap: break-word;
+    padding-bottom: 1rem;
+    height: 25rem;
+}

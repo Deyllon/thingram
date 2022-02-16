@@ -1,0 +1,20 @@
+.link__header{
+    text-decoration: none;
+    color: black;
+    
+}
+.link__header--icones{
+    margin-right: 2rem;
+}
+.link_like__header{
+    margin-top: 1rem;
+    display: flex;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 1rem;
+}
+.link_pesquisa__header{
+    text-decoration: none;
+    color: black;
+    display: flex;
+}

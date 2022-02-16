@@ -1,0 +1,19 @@
+.link__sugestoes{
+    margin-top: 1rem;
+    margin-left: 1rem;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.link__sugestoes--seguir{
+    color: skyblue;
+    font-weight: 400;
+    position:relative;
+    top:0;
+}
+.link__sugestoes--seguir:hover{
+    font-weight: bold;
+    top:-4px;
+    box-shadow:0 4px 4px #999;
+    transition: all .2s ease-in-out;
+}

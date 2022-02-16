@@ -1,0 +1,63 @@
+.input__login--texto{
+    width: 20rem;
+    margin-left: auto;
+    margin-top: 0.5rem;
+    border-radius: 10px;
+    background-color: white;
+    border: none;
+    text-align: center;
+    margin-right: auto;
+}
+.input__login--texto:focus{
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+}
+.input__login--submit{
+    
+    margin-top: 2rem;
+    background-color: white;
+    border: none;
+}
+.input__login--submit:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+.link__login--cadastro{
+    text-decoration: none;
+    color: black;
+    margin-right: 2rem;
+}
+.link__login--cadastro:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+.titulo__login--cadastro{
+    margin-top: 2rem;
+}
+@media  screen and (max-width:767px){
+    .input__login--texto{     
+        width: 5rem;
+        margin-left: auto;
+        margin-top: 0.2rem;
+        border-radius: 10px;
+        background-color: white;
+        border: none;
+        text-align: center;
+        margin-right: auto;
+    }
+    .input__login--submit{
+        background-color: white;
+        border: none;
+        
+    }
+    .link__login--cadastro{
+        text-decoration: none;
+        color: black;
+        margin-right: 2rem;
+    }
+    .link__login--cadastro:hover{
+        cursor: pointer;
+        font-weight: bold;
+    }
+}

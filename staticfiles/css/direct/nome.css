@@ -1,0 +1,11 @@
+.nome_user__mensagem{
+    margin-top: 0.5rem;
+    margin-left: 0.3rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.nome_user__mensagem--mensage{
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    margin-left: 2rem;
+}

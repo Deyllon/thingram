@@ -1,0 +1,30 @@
+.input__publicar{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin-top: 1rem;
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;  
+    background-color: white;
+    font-weight: bold;
+}
+.input__publicar:focus{
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;   
+}
+.input__publicar:hover{
+    cursor: default;
+}
+.titulo__publicar{
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
+.input__publicar--button:hover{
+    cursor: pointer;
+}
+@media screen and (min-width: 768px) and (max-width:1023px){
+    .titulo__publicar{
+        margin-top: 1.5rem;
+    }
+}

@@ -1,0 +1,50 @@
+.titulo_perfil__post{
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    
+}
+
+.titulo_perfil__post--comentario{
+    word-wrap: break-word;
+    width: 30rem;
+}
+.input_texto__postagem--comentario{
+    width: 30vw;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+}
+.input_texto__postagem--comentario:focus{
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+}
+.input_botao__postagem--comentario{
+    border-radius: 10px;
+    width: 5vw;
+    border: none;
+    background-color: white;
+}
+@media  screen and (max-width:767px){
+   .input_texto__postagem--comentario{
+       width: 80vw;
+   }
+   .input_botao__postagem--comentario{
+       width: 20vw;
+   }
+   .titulo_perfil__post--comentario{
+       width: 80%;
+   }
+}
+@media screen and (min-width: 768px) and (max-width:1023px){
+    .input_texto__postagem--comentario{
+        width: 26vw;
+    }
+    .input_botao__postagem--comentario{
+        width: auto;
+    }
+    .titulo_perfil__post--comentario{
+        word-wrap: break-word;
+        width: 13vw;
+    }
+}

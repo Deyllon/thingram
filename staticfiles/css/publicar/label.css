@@ -1,0 +1,11 @@
+.label__publicar{
+    margin-left: auto;
+    margin-right: auto;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+.label__publicar:hover{
+    cursor: pointer;
+}

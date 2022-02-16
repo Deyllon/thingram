@@ -1,0 +1,39 @@
+.ul__perfil{
+    display: flex;
+    margin-left: 25rem;
+    margin-top: 3rem;
+}
+.ul__perfil--numeros{
+    margin-top: 1rem;
+    padding-right: 2rem;
+}
+.bio__perfil{
+    display: flex;
+    flex-direction: column;
+    margin-left: 27rem;
+    margin-top: 0.5rem;
+}
+@media screen and (max-width: 767px) {
+    .ul__perfil--numeros{
+        padding-right: 0;
+        margin-left: 5rem;
+    }
+    .bio__perfil{
+        display: flex;
+        flex-direction: column;
+        margin-left: 6rem;
+        margin-top: 0.5rem;
+    }
+}
+@media screen and (min-width: 768px) and (max-width:1023px){
+    .ul__perfil{
+        display: flex;
+        margin-left: 15rem;
+    }
+    .bio__perfil{
+        display: flex;
+        flex-direction: column;
+        margin-left: 17rem;
+        margin-top: 0.5rem;
+    }
+}

@@ -1,0 +1,21 @@
+.usuario__postagem{
+    height: 3rem;
+    width: 3rem;
+    border-radius: 100%;
+}
+.usuario__postagem--mensagem{
+    height: 2rem;
+    width: 2rem;
+    margin: 1rem;
+}
+.usuario__postagem--lista{
+    height: 2rem;
+    width: 2rem;
+}
+@media  screen and (max-width:767px){
+    .usuario__postagem{
+        height: 2rem;
+        width: 2rem;
+        
+    }
+}
