@@ -25,15 +25,15 @@
                 <ul id="comentario_postagem">
                       
                 </ul>
-                
+                <form id="{{ postagem.id }}" class="container_comentario__postagem--comentario" action="{% url 'comentar' %}" method="post">{% csrf_token %}
+                    <input  type="text" name="" hidden id="username" value="{{request.user.perfil.id}}">
+                    <input class="input_texto__postagem--comentario" type="text" name="comentar" id="{{ postagem.id }}" placeholder="adicione um comentario" value="">
+                    <input class="input_botao__postagem--comentario" type="submit" value="Postar">
+                    <input id="resetar" type="reset" value="" hidden>
+                </form>
             </div>
         </div>
-        <form id="{{ postagem.id }}" class="container_comentario__postagem--comentario" action="{% url 'comentar' %}" method="post">{% csrf_token %}
-            <input  type="text" name="" hidden id="username" value="{{request.user.perfil.id}}">
-            <input class="input_texto__postagem--comentario" type="text" name="comentar" id="{{ postagem.id }}" placeholder="adicione um comentario" value="">
-            <input class="input_botao__postagem--comentario" type="submit" value="Postar">
-            <input id="resetar" type="reset" value="" hidden>
-        </form>
+       
         <script>
             function voltar(){
                 window.history.back()

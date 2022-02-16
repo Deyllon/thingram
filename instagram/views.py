@@ -9,8 +9,9 @@ from usuarios.models import Perfil
 
 def index(request):
     if request.user.is_authenticated:
-        postagens = Postagem.objects.exclude(usuario=request.user.perfil).order_by('-data')
         usuario = Perfil.objects.filter(seguidores__username__icontains=request.user).values_list('id')
+        postagens = Postagem.objects.exclude(usuario=request.user.perfil).order_by('-data') & Postagem.objects.exclude(usuario_id__in=usuario).order_by('-data')
+        
         postagens_seguidores = Postagem.objects.filter(usuario_id__in=usuario).order_by('-data') | Postagem.objects.filter(usuario=request.user.perfil).order_by('data')
         perfil = Perfil.objects.exclude(user=request.user) & Perfil.objects.exclude(seguidores=request.user).order_by('seguidores')[:3]
         contexto = {

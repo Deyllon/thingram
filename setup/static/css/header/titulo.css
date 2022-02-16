@@ -24,16 +24,18 @@
     margin-top: 0.5rem;
     font-weight: bold;
 }
-@media  screen and (max-width:767px){
-    .titulo_pesquisa__header{
-        margin-left: 0;
-        margin-top: 0;
-        font-weight: bold;
-    }
+@media  screen and (min-width:320px) and (max-width:374px) {
     .titulo__header{
-        margin-top: 0.5rem;
+        display: none;
     }
-    .paragrafo__header{
-        margin-top: 0.5rem;
+}
+@media  screen and (min-width:375px) and (max-width:424px) {
+    .titulo__header{
+        display: none;
+    }
+}
+@media  screen and (min-width:425px) and (max-width:767px) {
+    .titulo__header{
+        display: none;
     }
 }

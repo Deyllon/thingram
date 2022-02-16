@@ -2,3 +2,11 @@
     display: flex;
     flex-direction: column;
 }
+.danger{
+    border: 1px solid;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 0.2rem;
+    background-color: #CA4333;
+    font-weight: bold;
+}
