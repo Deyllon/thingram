@@ -1,8 +1,8 @@
-from django.shortcuts import redirect
+
 from email_validator import validate_email, EmailNotValidError
 from password_validator import PasswordValidator
 from django.contrib.auth.models import User
-from django.contrib import messages
+
 from usuarios.models import Perfil
 
 
@@ -14,7 +14,7 @@ def valida_email(email):
         em = valid.email
         return True
     except EmailNotValidError as e:
-        return False
+        return 'False'
 
 
 def valida_nome(nome):

@@ -12,7 +12,8 @@ from instagram.models import Notificacao
 def cadastro(request):
     if request.method == 'POST':
         email = request.POST['email']
-        if not valida_email(email):
+        
+        if  valida_email(email) == 'False':
             messages.error(request, 'O email não é valido')
             return redirect('cadastro')
         nome = request.POST['nome']

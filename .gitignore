@@ -49,6 +49,5 @@ coverage.xml
 cover/
 .manifest
 .spec
-
 package-lock.json
 package.json
