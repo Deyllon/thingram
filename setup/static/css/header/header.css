@@ -11,15 +11,15 @@
 }
 .container_log__header--ativo{
     margin-top: 3rem;
-    width: 8rem;
-    margin-left: 11.2rem;
-    
-    border: 1px solid #f5f5f5;
+    width: 15rem;
+    border: 1px solid#f5f5f5;
+    background-color: whitesmoke;
+    height: 5rem;
+    overflow: scroll;
+    overflow-x: hidden;
     position: fixed;
     text-align: center;
-    height: 5rem;
-    padding-top: 0.5rem;
-    background-color: whitesmoke;
+    margin-left: 5rem;
 }
 .container_menu__header{
     display: none;
@@ -39,60 +39,71 @@
     position: fixed;
     margin-left: 5rem;
 }
-@media  screen and (max-width:424px){
-    .header__header{
-        position: fixed;
-        height: 3rem;
-        border-bottom: 1px solid #f5f5f5;
-        width: 100%;
-        background-color: whitesmoke;
-    }
-    .container_menu__header{
-        display: block;
-        position: fixed;
-        width: 8rem;
-        background-color: #f5f5f5;
-        margin-top: 3rem;
-        right: 0.1rem;
-        text-align: center;
-    }
+@media  screen and (min-width:320px) and (max-width:374px) {
     .container_likes__header--ativo{
-        margin-top: 3rem;
+        margin-left: 0;
         right: 0.1rem;
-    }
-}
-@media  screen and (min-width:425px) and (max-width:767){
-    .header__header{
-        position: fixed;
-        height: 3rem;
-        border-bottom: 1px solid #f5f5f5;
-        width: 100%;
-        background-color: whitesmoke;
-    }
-    .container_likes__header--ativo{
-        margin-top: 3rem;
-        right: 0.1rem;
-    }
-    .container_menu__header{
-        display: block;
-        position: fixed;
-        width: 8rem;
-        background-color: #f5f5f5;
-        margin-top: 3rem;
-        right: 0.1rem;
-        text-align: center;
-    }
-}
-@media screen and (min-width: 768px) and (max-width:1023px){
-    .header__header{
-        height: 3rem;
     }
     .container_log__header--ativo{
-        margin-top: 2rem;
-        width: 8.2rem;
+        margin-top: 3rem;
+        width: 15rem;
+        border: 1px solid#f5f5f5;
+        background-color: whitesmoke;
+        height: 5rem;
+        overflow: scroll;
+        overflow-x: hidden;
+        position: fixed;
+        right: 0.1rem;
+        text-align: center;
     }
+}
+@media  screen and (min-width:375px) and (max-width:424px) {
     .container_likes__header--ativo{
-        margin-top: 2rem;
-        margin-left: 4.3rem;
+        margin-left: 0;
+        right: 0.1rem;
     }
+    .container_log__header--ativo{
+        margin-top: 3rem;
+        width: 15rem;
+        border: 1px solid#f5f5f5;
+        background-color: whitesmoke;
+        height: 5rem;
+        overflow: scroll;
+        overflow-x: hidden;
+        position: fixed;
+        right: 0.1rem;
+        text-align: center;
+    }
+}
+@media  screen and (min-width:425px) and (max-width:767px) {
+    .container_likes__header--ativo{
+        margin-left: 0;
+        right: 0.1rem;
+    }
+    .container_log__header--ativo{
+        margin-top: 3rem;
+        width: 15rem;
+        border: 1px solid#f5f5f5;
+        background-color: whitesmoke;
+        height: 5rem;
+        overflow: scroll;
+        overflow-x: hidden;
+        position: fixed;
+        right: 0.1rem;
+        text-align: center;
+    }
+}
+@media  screen and (min-width:768px) and (max-width:1023px) {
+    .container_log__header--ativo{
+        margin-top: 3rem;
+        width: 15rem;
+        border: 1px solid#f5f5f5;
+        background-color: whitesmoke;
+        height: 5rem;
+        overflow: scroll;
+        overflow-x: hidden;
+        position: fixed;
+        text-align: center;
+        margin-left: 5rem;
+    }   
 }

@@ -4,3 +4,11 @@
 .item_lista__perfil--numeros{
     width: 8rem;
 }
+@media screen and (max-width: 767px) {
+    .item_lista__perfil{
+        margin-left: 1rem;
+    }
+    .item_lista__perfil--numeros{
+        width: 100%;
+    }
+}

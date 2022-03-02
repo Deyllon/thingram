@@ -28,13 +28,14 @@
                         <div  id="mensagemconteudo">
                             
                         </div>
-                        <form id="formulario_mensagem" class="formulario_inbox__mensagem" action="{% url 'enviar_mensagem' %}" method="post">{% csrf_token %}
-                            <input id="destinatario" type="text" hidden name="" value="{{perfil.pk}}">
-                            <input id="emissario" type="text" hidden name="" value="{{request.user.perfil.pk}}">
-                            <input id="mensagem" class="input_text_inbox__mensagem" type="text" name="" id="" placeholder="Enviar mensagem">
-                            <input id="enivar_mensagem" class="input_submit_inbox__mensagem" type="submit" value="Postar">
-                        </form>
+                        
                     </div>
+                    <form id="formulario_mensagem" class="formulario_inbox__mensagem" action="{% url 'enviar_mensagem' %}" method="post">{% csrf_token %}
+                        <input id="destinatario" type="text" hidden name="" value="{{perfil.pk}}">
+                        <input id="emissario" type="text" hidden name="" value="{{request.user.perfil.pk}}">
+                        <input id="mensagem" class="input_text_inbox__mensagem" type="text" name="" id="" placeholder="Enviar mensagem">
+                        <input id="enivar_mensagem" class="input_submit_inbox__mensagem" type="submit" value="Postar">
+                    </form>
                 </div>
             </main>
         </div>
@@ -70,7 +71,10 @@
                     success:function(resposta){
                         $("#mensagemconteudo").empty();
                         for (let mensagem in resposta.messages){ 
-                            let conteudo = "<div class='container_inbox__mensagem'><div class='div_inbox__mensagem'><p class='dados_inbox__mensagem'>"+resposta.messages[mensagem].emissario_nome+"</p><p class='dados_inbox__mensagem'>"+resposta.messages[mensagem].data+"</p></div><p class='conteudo_inbox__mensagem'>"+resposta.messages[mensagem].conteudo+"</p></div>"; 
+                            let data = resposta.messages[mensagem].data
+                            
+                            console.log(data)
+                            let conteudo = "<div class='container_inbox__mensagem'><div class='div_inbox__mensagem'><p class='dados_inbox__mensagem'>"+resposta.messages[mensagem].emissario_nome+"</p></div><p class='conteudo_inbox__mensagem'>"+resposta.messages[mensagem].conteudo+"</p></div>"; 
                             $("#mensagemconteudo").append(conteudo) 
                             }         
                     },
@@ -80,5 +84,4 @@
                 });
             },1000);
         </script>
-       
 {% endblock %}

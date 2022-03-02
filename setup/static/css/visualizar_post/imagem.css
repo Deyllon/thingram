@@ -20,19 +20,17 @@
 .icone_remover__post{
     width: 1.5rem;
     height: 1.5rem;
-    margin-left: 19rem;
+    
 }
 .icone_remover__post--comentario{
-    margin-right: 3.65rem;
-    margin-left: auto;
+    margin-right: 1.75rem;
+    
 }
 @media  screen and (max-width:767px){
-    .icone_remover__post{
-        margin-left: 0;
-    }
+    
 }
 @media screen and (min-width: 768px) and (max-width:1023px){
-    .icone_remover__post{
-        margin-left: 3.1rem;
+    .icone_perfil__post{
+        margin-left: 0.5rem;
     }
 }

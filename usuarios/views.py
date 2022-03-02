@@ -12,7 +12,8 @@ from instagram.models import Notificacao
 def cadastro(request):
     if request.method == 'POST':
         email = request.POST['email']
-        if not valida_email(email):
+        
+        if  valida_email(email) == 'False':
             messages.error(request, 'O email não é valido')
             return redirect('cadastro')
         nome = request.POST['nome']
@@ -47,11 +48,14 @@ def login(request):
         email = request.POST['email']
         senha = request.POST['senha']
         if email and senha is not None:
-            nome = User.objects.filter(email=email).values_list('username', flat=True).get()
-            usuario_login = auth.authenticate(request, username=nome, password=senha)
-            if usuario_login is not None:
-                auth.login(request, usuario_login)
-                return redirect('index')
+            if User.objects.filter(email=email).exists():
+                nome = User.objects.filter(email=email).values_list('username', flat=True).get()
+                usuario_login = auth.authenticate(request, username=nome, password=senha)
+                if usuario_login is not None:
+                    auth.login(request, usuario_login)
+                    return redirect('index')
+            else:
+                return redirect ('login')
         else:
             return redirect ('login')
     return render (request,'login.html')

@@ -50,13 +50,14 @@
                                 <input  type="text" name="" hidden id="username" value="{{request.user.perfil.id}}">
                                 <input class="input_texto__postagem" type="text" name="comentar" id="{{ post.id }}" placeholder="adicione um comentario">
                                 <input class="input_botao__postagem" type="submit" value="Postar">
+                                <input class="input_resetar" id="resetar" type="reset" value="" hidden>
                             </form>
                         </div>
 
                     {% endfor %}
                 {% endif %}
-                <h5 class="titulo_sempost__postagem">Mostrando posts de outros usuarios não seguidos</h5>
                 {% if postagens %}
+                    <h5 class="titulo_sempost__postagem">Mostrando posts de outros usuarios não seguidos</h5>
                     {% for post in postagens %}
                    
                         <div class="container__postagem">
@@ -81,6 +82,7 @@
                                 <input  type="text" name="" hidden id="username" value="{{request.user.perfil.id}}">
                                 <input class="input_texto__postagem" type="text" name="comentar" id="{{ post.id }}" placeholder="adicione um comentario">
                                 <input class="input_botao__postagem" type="submit" value="Postar">
+                                <input class="input_resetar" id="resetar" type="reset" value="" hidden>
                             </form>
                         </div>
 
@@ -127,6 +129,7 @@
                 const texto = $(this).find(".input_texto__postagem").val()
                 const user =  $(this).find("#username").val()
                 const url = $(this).attr('action')
+                const resetar = $(this).find(".input_resetar")
                 $.ajax({
                     type: 'POST',
                     url: url,
@@ -139,6 +142,7 @@
                     },
                     success: function(data){
                         alert(data)
+                        resetar.click()
                     }
                 });
                 texto.value = ''      

@@ -49,4 +49,5 @@ coverage.xml
 cover/
 .manifest
 .spec
-medias
+package-lock.json
+package.json
